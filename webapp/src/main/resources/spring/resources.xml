@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        ">
+
+
+    <bean id="DatabaseData" class="gov.nist.healthcare.ttt.webapp.common.db.DatabaseData">
+        <property name="databaseUsername" value="${ttt.db.username}"/>
+        <property name="databasePassword" value="${ttt.db.userpassword}"/>
+        <property name="databaseHostname" value="${ttt.db.hostname}"/>
+        <property name="databaseName" value="${ttt.db.dbname}"/>
+    </bean>
+
+    <bean id="DatabaseInstance" class="gov.nist.healthcare.ttt.webapp.common.db.DatabaseInstance"/>
+    
+    <bean id="Emailer" class="gov.nist.healthcare.ttt.webapp.direct.listener.EmailerModel">
+        <property name="smtpUser" value="${direct.listener.email.username}"/>
+        <property name="smtpPassword" value="${direct.listener.email.password}"/>
+        <property name="from" value="${direct.listener.email.from}"/>
+        <property name="host" value="${direct.listener.email.host}"/>
+        <property name="smtpPort" value="${direct.listener.email.port}"/>
+        <property name="smtpAuth" value="${direct.listener.email.auth}"/>
+        <property name="starttls" value="${direct.listener.email.starttls}"/>
+        <property name="gmailStyle" value="${direct.listener.email.gmailStyle}"/>
+    </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="5000000"/>
+    </bean>
+
+</beans>

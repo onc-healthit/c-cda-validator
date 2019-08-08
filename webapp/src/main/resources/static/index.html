@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="ttt" ng-controller="AppCtrl">
+	<head>
+		<title ng-bind="pageTitle"></title>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Edge Testing Tool</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- font awesome from BootstrapCDN -->
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<!-- Bootstrap CSS CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+		<!-- compiled CSS -->
+		<link rel="stylesheet" type="text/css" href="assets/ttt-0.0.1.css" />
+
+		<!-- compiled JavaScript -->
+		<script type="text/javascript" src="assets/ttt-0.0.1.js"></script>
+
+		<!-- Favicon -->
+		<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40163006-1', 'auto');
+</script>
+
+	</head>
+
+	<body>
+		<div growl></div>
+	    <div ui-view="main"></div>
+	    <back-to-top></back-to-top>
+	</body>
+
+
+
+</html>
+
+

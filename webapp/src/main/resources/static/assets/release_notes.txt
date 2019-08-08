@@ -1,0 +1,85 @@
+
+==Version 2.1.2.1#11/30/2017
+    *1. Updated Direct LDAP Certificate Discovery to account for userCertificate:binary attribute which is used to store direct certificates in certain systems. Prior to this fix the certificate associated with a Direct address stored in the attribute "userCertificate:binary" was not being discovered successfully where as certificate stored in "userCertificate" was being discoverd.
+    
+    *2. Updated the C-CDA Validator to 1.0.25 version which can be accessed at
+    - https://github.com/siteadmin/reference-ccda-validator/releases
+    
+    *3. The C-CDA validator was updated to allow for Translation element within the raceCode attribute to be used to represent granular race code. 
+    
+    *4. The C-CDA Validator was also update to fix the vocabulary defect which prevented validation in certain cases with the error message "The service has encountered the following error: result returns more than one."
+    
+    *5. Updated the 170.315(b)(2) CIRI Sample XML files with the right Diagnosis code of 282291009 instead of the incorrect code (29308) which is currently present.
+
+==Version 2.1.2#11/16/2017
+    *1. Updated Test Descriptions for XDR MT Test 50a and 50b to move the email addresses to the “More Info” screen.
+    
+    *2. Updated the “More Info” screen for SMTP Test 26a and 26b to document the expected outcome.
+    
+    *3. Added a link to the documents and help from ETT Home page.
+    
+    *4. Removed Email addresses for various MDN endpoints from ETT HISP and Edge Home pages since the addresses are already part of the Test Cases.
+    
+    *5. Removed 2015 Edition Direct Content Validation endpoints from ETT HISP and Edge Home.
+    
+    *6. Clarified “Vendor Email Address” as “Vendor Direct Email Address” as part of the ETT UI.
+    
+    *7. Added a link to the FAQs as part of the Documents page.
+    
+    *8. Corrected Typos in XDR Tests 10, 11 and 12 on More Info pages.
+
+==Version 2.1.1.1#10/30/2017
+
+    *1. The C-CDA validator has been updated to Release 1.0.24 which can be accessed here: 
+    - https://github.com/siteadmin/reference-ccda-validator/releases
+    
+    *2. As part of the release, the latest Value Sets from VSAC have been downloaded and configured.
+    
+    *3. For more information about the Value Sets, please refer to the github location
+    - https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs
+    
+    *4. The Code Validation has been updated to print warnings for inactive codes as specified by the CodeSystem files.
+
+==Version 2.1.1#10/19/2017
+
+    *1. Adding Direct address to Direct Home page - To verify basic Direct send capabilities of your system send a message to:testing@ttpedge.sitenv.org.
+    
+     *2. Updated Direct Home Page with more enhancements.
+     
+     *3. Removed orphan listing in the Surveillance (h)(2) dropdown array
+     
+     *4. Corrected SMTP MT Test 46 to display the correct test status - distinctly showing "Failed" instead of the generic "Retry" in case of messages without the header.
+     
+     *5. Updated the files in the inboxes for POP & IMAP Test 31 with the current versions.
+     
+     *6. Changed Text in XDR MT Test 13, 14, 16
+     
+     *7. Fixed SMTP Receive Tests 29 and 29 contain two METADATA.XML files
+     
+     *8. Fixed - CCDA Validation Report link doesn't work for (h)(2) SMTP Send 8, 14 and (b)(1) SMTP Send 8, 14, 18
+     
+     *9. Fixed the ttpds2 DNS MX entry to return the host name instead of IP
+     
+     *10. nodeRepresentation attribute missing for author in XDR tests 3/5 - fixed and verified.
+     
+     *11. Collecting usage analytics for various user functions.
+
+==Version 2.1.0.2#9/27/2017
+
+  * 2015 Edition Testing by Criteria 
+      - lists duplicate entries in the criteria dropdown - fixed.
+
+==Version 2.1.0.1#9/25/2017
+
+* Direct:
+	- The endpoint dsn@ttpedge.sitenv.org which was unused as part of ETT tool and 2014 and 2015 Test procedures was removed as it was causing exchanging unnecessary messages with HISPs who sent messages to the endpoint in a continuous loop causing a lot of unnecessary network traffic.
+
+* C-CDA Validator: The C-CDA Validator was updated to 1.0.23 with the following fixes.
+	- Updated the 170.315(b)(2) - CIRI Validation for R1.1 files which was missing. Prior to the release, the R1.1 file reconciliation output submitted to the validator was not being validated for content. This was updated to ensure content matching was performed with the R1.1 reconciliation file outputs. So if the reconciliation of R1.1 files does not produce the output following the instructions provided for the criteria, there will be errors displayed by the validator.
+	- Existing Smoking status validation bug was fixed which was previously preventing an error being displayed when smoking status entry was nullFlavored or missing. The fixing of the bug displays an error if smoking status does not include the proper test data provided. 
+	- DS4P Validation was updated such that PurposeOfUseSecurityObservation/value and all other values and codes of templates which inherit from SecurityObservation now override their parent requirements. This allows for both templates to exist, but only the child's requirement to be enforced. This resolves the possible conflict of differing terminology requirements between a parent and child template. As a result, PurposeOfUseSecurityObservation value/@codesystem now requires ActReason 2.16.840.1.113883.5.8 as opposed to the prior requirement of ObservationValue 2.16.840.1.113883.5.1063, due to an error in the HL7 example XML.
+
+* Test Data Updates:
+	- The R11 Receiver files (XML files) for 170.315(b)(1) and (b)(5) were updated to correct the telephone numbers to be consistent between the narrative display content and the coded information.
+	- The Negative Testing Files for CCDS (Both R2.1 and R1.1) were updated to remove “Bad/Fictitious” template Ids , since vendors were interpreting these templates as open templates and hence not flagging the errors. The omission of these templates and corresponding entries with the right template Ids will make the test data less confusing, so that vendors can directly identify which templates are missing and erroneous based on the C-CDA IG.
+	- The DS4P Sample 1 files were updated based on the DS4P issues resolved in the validator above.

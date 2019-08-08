@@ -1,0 +1,30 @@
+[
+    {
+        "description": "DTT Public Cert",
+        "icon": "key",
+        "name": "",
+        "hoverText": "The DTT Public Cert is used for the signing of Direct messages.",
+        "link": ""
+    },
+    {
+        "description": "DTT Trust Anchor",
+        "icon": "anchor",
+        "name": "nist.gov.der",
+        "hoverText": "The Trust Anchor establishes the relationship between the certificate authority's (CA) certificate and the HISP's (in this case, the DTT acting as a HISP) certificate.",
+        "link": ""
+    },
+    {
+        "description": "Invalid Trust Anchor",
+        "icon": "anchor",
+        "name": "invalid-trust-relation.der",
+        "hoverText": "The Invalid Trust Anchor is used for negative testing and establishes and invalid relationship between the certificate authority's (CA) certificate and the DTT for negative testing.",
+        "link": ""
+    },
+    {
+        "description": "DTT Public Root CA",
+        "icon": "key",
+        "name": "sampleca.nist.gov.pem",
+        "hoverText": "The public root CA certificate is the self-signed certificate that identifies the root CA, i.e. the trusted authority that issues certificates. A HISP will need to download the root certificate to verify that the trust anchor is valid and that it correctly verifies the identity of the HISP's certificate.",
+        "link": ""
+    }
+]
