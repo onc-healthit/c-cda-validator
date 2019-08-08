@@ -1,0 +1,17 @@
+<h2><i class="fa fa-line-chart glyphiconHome"></i> XDR Test Cases</h2>
+<hr>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <button class="btn btn-lg" ng-class="{true:'btn-primary', false:'btn-default'}[transactionType==='sender']" ng-click="transactionType = 'sender'">
+            Your System as: Sender
+        </button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-lg" ng-class="{true:'btn-primary', false:'btn-default'}[transactionType==='receiver']" ng-click="transactionType = 'receiver'">
+            Your System as: Receiver
+        </button>
+    </div>
+</div>
+
+<div ui-view="xdr" ng-cloak></div>

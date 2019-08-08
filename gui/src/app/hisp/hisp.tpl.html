@@ -1,0 +1,23 @@
+<div ng-include="'hisp/hispHeader.tpl.html'" ng-cloak></div>
+
+<div growl></div>
+
+<div class="container">
+
+    <!-- If javascript is disabled -->
+    <noscript>
+        <p class="bg-danger" style="margin-top: 30%;padding: 10px; font-size: large;">
+            <i class="fa fa-times-circle"></i>
+            Error 0x0001: You must have JavaScript enabled to use this app.
+        </p>
+    </noscript>
+
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view="hisp" ng-cloak></div>
+
+</div>
+
+<div ng-include="'templates/footer.tpl.html'"></div>

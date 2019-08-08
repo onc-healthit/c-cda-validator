@@ -1,0 +1,78 @@
+<div>
+    <div id="appheader">
+		<a href="https://www.healthit.gov/" title="HealthIT.gov" rel="external" class="site-logo">
+			<img src="assets/img/healthit.gov.logo.png" alt="HealthIT.gov">
+		</a>
+    </div>
+    <div class="navbar navbar-default" ng-controller="HeaderCtrl">
+        <ul class="nav">
+            <li>
+                <a href ui-sref="home" analytics-on="click" analytics-event="Edge ETT Home" analytics-category="Edge ETT Home">
+                    <div msg="" key="navbar.ttthome">ETT Home</div>
+                </a>
+            </li>
+            <li ui-sref-active="active" analytics-on="click" analytics-event="Edge Home" analytics-category="Edge Home">
+                <a ui-sref=".home">
+                    <div msg="" key="navbar.home">Edge Home</div>
+                </a>
+            </li>
+            <li ng-class="{active: $state.includes('edge.smtp')}">
+                <a ui-sref=".smtp.main" analytics-on="click" analytics-event="Edge SMTP" analytics-category="Edge SMTP">
+                    <div msg="" key="navbar.smtp">SMTP Test Cases</div>
+                </a>
+            </li>
+            <li ng-class="{active: $state.includes('edge.mu2')}">
+                <a ui-sref=".mu2.main" analytics-on="click" analytics-event="Edge MT" analytics-category="Edge MT">
+                    <div msg="" key="navbar.mu2">Message Tracking</div>
+                </a>
+            </li>
+            <li ng-class="{active: $state.includes('edge.imap')}">
+                <a ui-sref=".imap.main" analytics-on="click" analytics-event="Edge IMAP" analytics-category="Edge IMAP">
+                    <div msg="" key="navbar.imap">IMAP Test Cases</div>
+                </a>
+            </li>
+            <li ng-class="{active: $state.includes('edge.pop')}">
+                <a ui-sref=".pop.main" analytics-on="click" analytics-event="Edge POP3" analytics-category="Edge POP3">
+                    <div msg="" key="navbar.pop">POP3 Test Cases</div>
+                </a>
+            </li>
+            <li ng-class="{active: $state.includes('edge.xdr')}">
+                <a ui-sref=".xdr.main" analytics-on="click" analytics-event="Edge XDR" analytics-category="Edge XDR">
+                    <div msg="" key="navbar.xdr">XDR Test Cases</div>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".reports" analytics-on="click" analytics-event="Edge Validation" analytics-category="Edge Validation">
+                    <div msg="" key="navbar.reports">Validation Reports</div>
+                </a>
+            </li>
+            <li ui-sref-active="active" class="pull-right">
+                <a ui-sref=".help" analytics-on="click" analytics-event="Edge Help" analytics-category="Edge Help">
+                    <div msg="" key="navbar.help"><i class="fa fa-question-circle"></i> Help</div>
+                </a>
+            </li>
+            <li ui-sref-active="active" class="pull-right">
+                <a ui-sref=".documents" analytics-on="click" analytics-event="Edge Documents" analytics-category="Edge Documents">
+                    <div msg="" key="navbar.documents"><i class="fa fa-book"></i> Documents</div>
+                </a>
+            </li>
+            <li class="pull-right" ng-show="!userInfo.logged">
+                <a href="" analytics-on="click" analytics-event="Edge Login" analytics-category="Edge Login">
+                    <div key="navbar.login" ng-click="loginPopup()">Login/Sign up</div>
+                </a>
+            </li>
+            <li uib-dropdown class="pull-right" ng-show="userInfo.logged">
+                <a href="#" uib-dropdown-toggle>Welcome {{userInfo.username}}<b class="caret"></b></a>
+                <ul class="uib-dropdown-menu">
+                    <li><a ui-sref=".accountInfo">Account Info</a>
+                    </li>
+                    <li><a ui-sref=".changePassword">Change Password</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="" ng-click="logout()">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

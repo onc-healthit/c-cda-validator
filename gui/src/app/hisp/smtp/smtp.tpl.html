@@ -1,0 +1,135 @@
+<div class="row">
+    <!-- Profile part -->
+    <div class="col-sm-4">
+        <!-- <h2 style="margin-top:0px;"><i class="fa fa-line-chart"></i> SMTP Test Cases</h2> -->
+        <div class="row">
+
+            <div class="panel panel-default">
+                <div class="panel-heading profile-no-padding">
+                    <div class="btn-group profile-input" uib-dropdown>
+                        <div class="profile-field" tooltips title="Click to edit" tooltip-side="left">
+                            <edit-in-place value="currentProfile.profileName"></edit-in-place>
+                        </div>
+                        <button type="button" class="btn btn-default pull-right profile-button" uib-dropdown-toggle>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="uib-dropdown-menu profile-field" role="menu">
+                            <li ng-repeat="prof in profileList track by $index">
+                                <a href="" ng-click="switchProfile(prof)">{{prof.profileName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 text-center">
+                            <p>
+                                <strong>Your system as</strong>
+                            </p>
+                            <div class="btn-group">
+                                <label class="btn" ng-class="{true:'btn-primary', false:'btn-default'}[transactionType==='sender']" ng-model="transactionType" uib-btn-radio="'sender'">
+                                    <strong>Sender</strong>
+                                </label>
+                                <label class="btn" ng-class="{true:'btn-primary', false:'btn-default'}[transactionType==='receiver']" ng-model="transactionType" uib-btn-radio="'receiver'">
+                                    <strong>Receiver</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="field field-tight">
+                                <label ng-show="currentProfile.sutSMTPAddress" class="show-hide">Vendor SMTP Server</label>
+                                <input type="text" class="form-control" ng-model="currentProfile.sutSMTPAddress" placeholder="Vendor SMTP Address" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="field field-tight">
+                                <label ng-show="currentProfile.sutEmailAddress" class="show-hide">Vendor Direct Email Address</label>
+                                <input type="text" class="form-control" ng-model="currentProfile.sutEmailAddress" placeholder="Vendor Direct Email Address" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <strong style="margin-right: 20px;">TLS</strong>
+                            <toggle-switch model="useTLS" knob-label=" ">
+                                <toggle-switch>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="field field-tight">
+                                <label ng-show="currentProfile.sutUsername" class="show-hide">Vendor Username</label>
+                                <input type="text" class="form-control" ng-model="currentProfile.sutUsername" placeholder="Vendor Username" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="field field-tight">
+                                <label ng-show="currentProfile.sutPassword" class="show-hide">Vendor Password</label>
+                                <input type="text" class="form-control" ng-model="currentProfile.sutPassword" placeholder="Vendor Password" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testing mode -->
+                    <div ng-show="testingMode" ng-cloak>
+                        <div class="row">
+                            <hr>
+                            <div class="col-md-12 col-lg-12 text-center">
+                                <strong class="required">Testing mode enabled</strong>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="field field-tight">
+                                    <label ng-show="sutSmtpPort" class="show-hide">Vendor SMTP Port</label>
+                                    <input type="text" class="form-control" ng-model="sutSmtpPort" placeholder="Vendor SMTP Port" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="field field-tight">
+                                    <label ng-show="tttSmtpPort" class="show-hide">ETT SMTP Port</label>
+                                    <input type="text" class="form-control" ng-model="tttSmtpPort" placeholder="ETT SMTP Port" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="field field-tight">
+                                    <label ng-show="tttSmtpAddress" class="show-hide">ETT Smtp Address</label>
+                                    <input type="text" class="form-control" ng-model="tttSmtpAddress" placeholder="ETT Smtp Address" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="" tooltips title="Clear form" tooltip-side="bottom" class="btn btn-sm btn-primary" ng-click="reset()">
+                        <i class="glyphicon glyphicon-trash"></i> Clear
+                    </a>
+                    <div class="pull-right">
+                        <a href="" tooltips title="Save profile" tooltip-side="bottom" class="btn btn-sm btn-warning" ng-click="saveProfile(currentProfile)">
+                            <i class="glyphicon glyphicon-edit"></i> Save
+                        </a>
+                        <a href="" tooltips title="Remove profile" tooltip-side="bottom" class="btn btn-sm btn-danger" ng-click="removeProfile(currentProfile.profileName)">
+                            <i class="glyphicon glyphicon-remove"></i> Remove
+                        </a>
+                    </div>
+                    <!-- Fix float problem -->
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Tests part -->
+    <div class="col-sm-8">
+        <div ui-view="smtp" ng-cloak></div>
+    </div>
+</div>

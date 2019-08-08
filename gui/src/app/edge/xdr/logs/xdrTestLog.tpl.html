@@ -1,0 +1,50 @@
+<div class="well">
+    <div class="row">
+        <div class="col-md-1">
+            <a ui-sref="{{testSystem}}.{{edgeProtocol}}.main"  class="btn btn-primary btn-lg" ng-click="scrollToId(logToDisplay)" tooltips title="Return to tests" tooltip-side="bottom">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="col-md-10">
+            <h2 style="margin:0;">Log for {{logToDisplay.name}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" ng-if="logToDisplay.status !== 'na' && !logToDisplay.expectedMDN">
+            <uib-tabset>
+                <uib-tab heading="Request" class="clickable not-selectable">
+                    <pre><code class="language-markup" prism>{{logToDisplay.results.content.value.request}}</code></pre>
+                </uib-tab>
+                <uib-tab heading="Response" class="tabbable clickable not-selectable">
+                    <pre><code class="language-markup" prism>{{logToDisplay.results.content.value.response}}</code></pre>
+                </uib-tab>
+                <uib-tab heading="C-CDA Validation" class="tabbable clickable not-selectable" ng-if="logToDisplay.results.content.value.ccdaReport">
+                    <ccda-r2-report data="logToDisplay.results.content.value.ccdaReport"></ccda-r2-report>
+                </uib-tab>
+            </uib-tabset>
+
+        </div>
+        <div class="col-md-offset-1" ng-if="logToDisplay.expectedMDN">
+            Check your SUT logs and accept or reject
+        </div>
+        <div class="col-md-offset-1">
+            <h2 style="margin: 0;">
+        <strong ng-if="logToDisplay.status === 'na'" style="color: blue;">No result yet</strong>
+        </h2>
+        </div>
+    </div>
+    <div class="center-block" style="text-align: center;" ng-if="logToDisplay.status === 'manual'">
+        <button type="submit" class="btn btn-lg btn-success" ng-click="validateXdr(logToDisplay, 'success')">
+            <i class="fa fa-check"></i> Accept
+        </button>
+        <button type="submit" class="btn btn-lg btn-danger" ng-click="validateXdr(logToDisplay, 'error')">
+            <i class="fa fa-times"></i> Reject
+        </button>
+    </div>
+    <div class="alert alert-success" ng-if="logToDisplay.status === 'success'">
+        Validation passed
+    </div>
+    <div class="alert alert-danger" ng-if="logToDisplay.status === 'error'">
+        Validation failed
+    </div>
+</div>

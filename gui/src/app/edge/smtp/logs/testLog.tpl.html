@@ -1,0 +1,104 @@
+<div class="well">
+	<div class="row">
+		<div class="col-md-1">
+			<a ui-sref="{{testSystem}}.{{edgeProtocol}}.main"  class="btn btn-primary btn-lg" ng-click="scrollToId(logToDisplay)" tooltips title="Return to tests" tooltip-side="bottom">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+		</div>
+		<div class="col-md-10">
+			<h2 style="margin:0;">Log {{logToDisplay.name}}</h2>
+		</div>
+	</div>
+	<div ng-repeat="result in logToDisplay.testResult">
+		<div class="row">
+			<div class="col-md-offset-1">
+				<h2 style="margin: 0;">
+					Test result #{{$index + 1}}:
+					<strong ng-if="result.criteriaMet === 'TRUE'" style="color: green;"><i class="fa fa-check"></i> Pass</strong>
+					<strong ng-if="result.criteriaMet === 'FALSE'" style="color: red;"><i class="fa fa-times"></i> Fail</strong>
+					<strong ng-if="result.criteriaMet === 'NA'" style="color: blue;">No result yet</strong>
+				</h2>
+			</div>
+		</div>
+
+		<div ng-if="result.criteriaMet !== 'NA'">
+
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Request responses</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<pre><span ng-repeat="(key, value) in result.testRequestResponses">{{key}}: {{value}}</span></pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="row" ng-if="!(result.CCDAValidationReports | isEmpty)">
+				<div class="col-md-offset-1 col-md-10">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>CCDA Validation Report link</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="(key, value) in result.CCDAValidationReports track by key">
+								<td>
+									<a href="" ng-click="openCcdaValidationReport(key, value)">Validation report of {{key}}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="reportTab">
+				<uib-tabset>
+					<uib-tab ng-repeat="(key, value) in result.attachments" heading="{{key}}" class="tabbable clickable not-selectable">
+						<attachment-download id="content" filename="{{key}}" get-data="getBlob(key, value)"></attachment-download>
+						<p style="clear:both;"></p>
+						<pre>{{value}}</pre>
+					</uib-tab>
+				</uib-tabset>
+			</div>
+
+			<div class="center-block" style="text-align: center;" ng-if="logToDisplay.status === 'manual'">
+				<button type="submit" class="btn btn-lg btn-success" ng-click="validateManual(logToDisplay, 'success')">
+					<i class="fa fa-check"></i> Accept
+				</button>
+				<button type="submit" class="btn btn-lg btn-danger" ng-click="validateManual(logToDisplay, 'fail')">
+					<i class="fa fa-times"></i> Reject
+				</button>
+			</div>
+			<div class="alert alert-success" ng-if="logToDisplay.status === 'success'">
+				Test passed
+			</div>
+			<div class="alert alert-danger" ng-if="logToDisplay.status === 'error'">
+				Test failed
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="CCDAModalContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Validation report of {{key}}</h3>
+	</div>
+	<div class="modal-body">
+		<ccda-r2-report data="report"></ccda-r2-report>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</script>

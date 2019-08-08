@@ -1,0 +1,50 @@
+<div class="well" ng-controller="XdrDescriptionCtrl">
+    <div class="row">
+        <div class="col-md-1">
+            <a ui-sref="{{testSystem}}.{{edgeProtocol}}.main" class="btn btn-primary btn-lg" ng-click="scrollToId(testObj)" tooltips title="Return to tests" tooltip-side="bottom" >
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="col-md-10">
+            <h2 style="margin:0;">{{testObj.name}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Purpose/Description:</th>
+                        <th>Expected Test Results:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span ng-bind-html = "testObjDesc"></td>
+                        <td>{{testObj['Expected Test Results']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Vendor Role</th>
+                        <th>Metadata Included</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{testObj['SUT: Sender/ Receiver']}}</td>
+                        <td>{{testObj['Metadata Included']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

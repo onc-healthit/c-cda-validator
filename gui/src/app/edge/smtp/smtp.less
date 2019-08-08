@@ -1,0 +1,91 @@
+.field-tight {
+    margin: 0px 0px 0px 0px !important;
+    padding: 0px 0px 0px 0px !important;
+}
+.tooltipster{
+    z-index:100;
+    position: relative;
+    cursor: pointer;
+}
+.show-hide.ng-hide-add, .show-hide.ng-hide-remove {
+    -webkit-transition: all linear 0.2s;
+    -moz-transition: all linear 0.2s;
+    transition: all linear 0.2s;
+    display: block!important;
+    position: absolute;
+}
+.show-hide.ng-hide-add.ng-hide-add-active, .show-hide.ng-hide-remove {
+    top: -8px;
+    display: block!important;
+    position: absolute;
+    opacity: 0;
+}
+.show-hide.ng-hide-add, .show-hide.ng-hide-remove.ng-hide-remove-active {
+    top: -14px;
+    opacity: 1;
+    display: block!important;
+    position: absolute;
+}
+.field {
+    position: relative;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+.field > label {
+    position: absolute;
+    top: -14px;
+    color: #428bca;
+    font-size: 0.8em;
+}
+.field > input {
+    border: 0;
+    padding: 0.5em 0!important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    ;
+    border-bottom: 2px solid #555555;
+    max-width: 400px;
+    margin-top: 15px
+}
+.short-input {
+    max-width: 400px;
+    display: block;
+}
+.profile-no-padding {
+    padding: 0;
+}
+.profile-input {
+    width: 100%;
+}
+.profile-field {
+    width: 90%;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    overflow: hidden;
+}
+.profile-button {
+    width: 10%;
+    padding: 10px;
+    border: 0;
+    border-left: 1px solid #dbdbdb;
+}
+.edit-in-place span {
+    cursor: pointer;
+}
+.edit-in-place input {
+    display: none;
+}
+.edit-in-place.active span {
+    display: none;
+}
+.edit-in-place.active input {
+    display: inline-block;
+}
+.ccda-modal .modal-dialog{
+    width: 80%;
+}

@@ -1,0 +1,71 @@
+<!-- Profile list -->
+<div ng-if="!selectedProfile" class="fade-animation">
+    <div class="container">
+        <div ng-if="profileList.length === 0" style="text-align: center; color: red; margin-bottom: 20px;">
+            <h2>You must be logged and have smtp/xdr profiles</h2>
+        </div>
+        <div class="row carousel-row" ng-repeat="profile in profileList">
+            <div class="col-md-8 col-md-offset-2 slide-row">
+                <div class="slide-content">
+                    <h3>{{profile.profileName}}</h3>
+                    <p>
+                        <i>SUT SMTP Address:</i>
+                        <strong>{{profile.sutSMTPAddress}}</strong>
+                    </p>
+                    <p>
+                        <i>SUT Email Address:</i>
+                        <strong>{{profile.sutEmailAddress}}</strong>
+                    </p>
+                </div>
+                <div class="slide-footer">
+                    <span class="pull-right buttons">
+                        <button class="btn btn-default btn-lg" ng-click="selectProfile(profile)"><i class="fa fa-fw fa-eye"></i> Show Report</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Validation report -->
+<div ng-if="selectedProfile" class="fade-animation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <a href="" ng-click="resetProfile()" class="btn btn-primary btn-lg" tooltips title="Return to tests" tooltip-side="bottom">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="col-md-11">
+                <h2 style="margin:0;">Validation report for profile: {{selectedProfile.profileName}}</h2>
+            </div>
+        </div>
+        <div class="row" ng-if="validation_report.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Timestamp</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="report in validation_report | orderBy:'-timestamp'">
+                        <td>{{report.testCaseNumber}}</td>
+                        <td>{{report.timestamp | date:'medium'}}</td>
+                        <td val="{{report.criteriaMet}}" check-or-cross></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row" ng-if="validation_report.length === 0">
+            <div class="col-md-offset-3">
+                <h2 style="color: blue;">
+                    <i>No report yet</i>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="well">
+	<div class="row">
+		<div class="col-md-1">
+			<a ui-sref="{{testSystem}}.{{edgeProtocol}}.main"   class="btn btn-primary btn-lg"  ng-click="scrollToId(logToDisplay)" tooltips title="Return to tests" tooltip-side="bottom">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+		</div>
+		<div class="col-md-10">
+			<h2 style="margin:0;">Log {{logToDisplay.name}}</h2>
+		</div>
+	</div>
+	<div ng-repeat="result in logToDisplay.testResult">
+		<div class="row">
+			<div class="col-md-offset-1">
+				<h2 style="margin: 0;">
+					Test result #{{$index + 1}}:
+					<strong ng-if="result.criteriaMet === true" style="color: green;"><i class="fa fa-check"></i> Pass</strong>
+					<strong ng-if="result.criteriaMet === false" style="color: red;"><i class="fa fa-times"></i> Fail</strong>
+					<strong ng-if="result.criteriaMet === 'NA'" style="color: blue;">No result yet</strong>
+				</h2>
+			</div>
+		</div>
+
+		<div ng-if="result.criteriaMet === true || result.criteriaMet === false">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Criteria Met</th>
+								<th>Request Time out</th>
+								<th>Proctored</th>
+								<th>Time elapsed (seconds)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td val="{{result.criteriaMet}}" check-or-cross></td>
+								<td val="{{result.didRequestTimeOut}}" check-or-cross></td>
+								<td val="{{result.proctored}}" check-or-cross></td>
+								<td>{{result.timeElapsedInSeconds}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Request responses</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><pre><span ng-repeat="(key, value) in result.testRequestResponses">{{key}}: {{value}}</span></pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<strong>Attachements: </strong>
+					<pre>
+					{{result.attachments}}
+					</pre>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,72 @@
+<div class="well" ng-controller="SmtpDescriptionCtrl">
+    <div class="row">
+        <div class="col-md-1">
+            <a ui-sref="{{testSystem}}.{{edgeProtocol}}.main" ng-click="scrollToId(specificTest)" class="btn btn-primary btn-lg" ng-click="scrollToId(specificTest)" tooltips title="Return to tests" tooltip-side="bottom">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="col-md-10">
+            <h2 style="margin:0;">{{specificTest.name}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <strong>Description:</strong>
+            <p ng-if="specificTest.longDesc">
+                {{specificTest.longDesc}}
+            </p>
+            <p ng-if="!specificTest.longDesc">
+                {{specificTest.desc}}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Vendor Role</th>
+                        <th>Vendor Edge</th>
+                        <th>Vendor HISP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{specificTest.sutRole}}</td>
+                        <td val="{{specificTest.sutEdge}}" check-or-cross></td>
+                        <td val="{{specificTest.sutHisp}}" check-or-cross></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-if="specificTest.fields.length > 0">
+        <div ng-repeat="field in specificTest.fields">
+
+            <div ng-show="field.display" class="row">
+                <label for="{{field.name}}" class="col-md-3 col-md-offset-1 small-padding control-label">
+                    {{field.label}}
+                    <i class="glyphicon glyphicon-question-sign"  tooltips title="{{field.name}}" tooltip-side="top"></i>
+                </label>
+
+                <div class="col-md-7 small-padding">
+                    <input type="{{field.datatype | inputFilter}}" placeholder="{{field.name}}" ng-model="fieldInput[field.name]" id="{{field.name}}" class="form-control" ng-disabled="{{field.readOnly}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div ng-show="specificTest.status === 'success' || specificTest.status === 'fail'" style="text-align: center;">
+        <h2>
+            <strong style="margin:0;" val="{{resultDisplay}}" check-or-cross></strong>
+            <span ng-show="specificTest.status === 'success'" style="color: green;">Success</span>
+            <span ng-show="specificTest.status === 'fail'" style="color: red;">Fail</span>
+        </h2>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary center-block" ng-click="startTest(specificTest, fieldInput)" ladda="laddaLoading" data-style="expand-right">
+        Run
+    </button>
+</div>
