@@ -24,9 +24,9 @@ NOTE: Text in ***Italicized Bold*** are specific to your local install directory
 
   ![install_1](https://user-images.githubusercontent.com/20687947/56751121-48a17c80-6753-11e9-8735-310cf56da65b.png)
   
-   >> a. Set JAVA_HOME variable in the environment variable. ***JAVA_HOME= c:\java\jdk1.8.0_91***
+    a. Set JAVA_HOME variable in the environment variable. ***JAVA_HOME= c:\java\jdk1.8.0_91***
    
-   >> b. Add Jre to your PATH variable. ***C: \Java\jdk1.8.0_91\jre\bin***
+    b. Add Jre to your PATH variable. ***C: \Java\jdk1.8.0_91\jre\bin***
 
 2.  Install maven
 
