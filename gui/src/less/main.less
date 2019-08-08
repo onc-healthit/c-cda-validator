@@ -1,0 +1,189 @@
+/**
+ * This is the main application stylesheet. It should include or import all
+ * stylesheets used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+
+/**
+ * This is our main variables file. We must include it last so we can overwrite any variable
+ * definitions in our imported stylesheets.
+ */
+
+@import 'variables.less';
+
+/**
+* This is the header less file
+*/
+
+@import 'header.less';
+
+@import 'sort-table.less';
+
+@import 'testCases.less';
+
+@import 'popover.less';
+
+@import 'ccdaReport.less';
+
+/**
+ * Typography
+ */
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
+}
+code, pre, .pre {
+    padding: 5px;
+    margin: 10px 0;
+    background-color: #EFEFEF;
+    border: 1px solid #DADADA;
+    border-radius: 3px;
+}
+code {
+    padding: 0 3px;
+    white-space: pre-wrap !important;       /* css-3 */
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap !important;      /* Opera 4-6 */
+    white-space: -o-pre-wrap !important;    /* Opera 7 */
+    word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+}
+pre {
+    margin: 10px 0;
+    padding: 5px;
+    white-space: pre-wrap !important;       /* css-3 */
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap !important;      /* Opera 4-6 */
+    white-space: -o-pre-wrap !important;    /* Opera 7 */
+    word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+}
+/**
+* Angular cloak
+*/
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+/**
+ * Footer
+ */
+html{
+	position:relative; 
+	min-height: 100%;
+}
+/*Normalize html and body elements,this style is just good to have*/
+html,body{
+	margin:0;
+	padding:0;
+}
+.container{
+	margin-bottom:15%;/* Height of footer*/
+} 
+#footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.footeritem {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #eee;
+}
+
+// Back to top button
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 200px;
+    right: 20px;
+    display:none;
+}
+
+// Fix modal shifting
+.modal {
+    overflow-y: auto;
+}
+.modal-open {
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.small-margin {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.small-padding {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.red-text {
+    color: red;
+}
+
+.small-margin-left {
+    margin-left: 10px;
+}
+
+.vert-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/**
+For pdf
+*/
+.rotate0 {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.rotate180 {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.rotate270 {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.doc-title {
+    color: CornflowerBlue;
+    text-decoration: underline;
+}
+
+
+/**
+ For XDR SAML
+*/
+
+.tab_saml>a {
+    border-color: #454644;
+    background-color: lightblue !important;
+}
+.tab_saml>a:hover, .tab_saml>a:focus {
+    border-color: #454644;
+    background-color: lightblue !important;
+}
+
+/**
+ * Now that all app-wide styles have been applied, we can load the styles for
+ * all the submodules and components we are using. 
+ *
+ * TODO: In a later version of this boilerplate, I'd like to automate this.
+ */
+
+@import '../app/home/home.less';
+@import '../app/direct/direct.less';
+@import '../app/edge/edge.less';
+@import '../app/edge/smtp/smtp.less';
+@import '../app/admin/admin.less';

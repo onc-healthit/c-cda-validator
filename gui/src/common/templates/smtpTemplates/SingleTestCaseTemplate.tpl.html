@@ -1,0 +1,128 @@
+<li ng-switch on="test.status">
+	<div class="leftButton">
+		<time ng-click="startTest(test, fieldInput)" ng-switch-when="na">
+			<span class="month">RUN</span>
+		</time>
+
+		<time class="loading" ng-switch-when="loading">
+			<!-- Loading spinner -->
+			<div us-spinner></div>
+		</time>
+
+		<time ng-click="startTest(test, fieldInput)" ng-switch-when="fetching">
+			<span class="pending">Check</span>
+			<span class="refresh">MDN</span>
+		</time>
+
+		<time ui-sref="{{testSystem}}.{{edgeProtocol}}.logs" ng-click="displayLog(test); scrollTop()" ng-switch-when="manual">
+			<span class="pending">Waiting</span>
+			<span class="refresh">Validation</span>
+		</time>
+
+		<time class="pass" ng-click="startTest(test, fieldInput)" ng-switch-when="success">
+			<span class="day">
+			<i class="fa fa-check"></i>
+		</span>
+		</time>
+
+		<time class="fail" ng-click="startTest(test, fieldInput)" ng-switch-when="retry">
+			<span class="fail">
+			<i class="fa fa-times"></i>
+		</span>
+			<span class="retry">
+			Retry
+		</span>
+		</time>
+
+
+		<time class="fail" ng-click="startTest(test, fieldInput)" ng-switch-when="fail">
+			<span class="fail">
+			<i class="fa fa-times"></i>
+		</span>
+			<span class="eerror">
+			Error
+		</span>
+		</time>
+
+		<div class="cancel" ng-click="resetTest(test)" ng-if="test.status !== 'na'">
+			<div class="pending">
+				<i class="fa fa-trash"></i>
+				<span ng-show="test.status === 'loading'">Cancel</span>
+				<span ng-hide="test.status === 'loading'">Clear</span>
+			</div>
+		</div>
+	</div>
+	<div id="test_{{test.name}}" class="info" ng-class="{ runningInfo: test.status !== 'na'}">
+		<h2 class="title">{{test.name}}</h2>
+		<p class="desc">{{test.desc}}</p>
+		<!-- <hr class="small-margin" /> -->
+		<div ng-repeat="field in test.fields">
+
+			<div ng-show="field.display" class="row">
+				<label for="{{field.name}}" class="col-md-3 col-md-offset-1 small-padding control-label">
+					{{field.label}}
+					<i class="fa fa-question-circle tooltipster" tooltips tooltip-title="{{field.label}}" tooltip-side="top"></i>
+				</label>
+
+				<div class="col-md-7 small-padding" ng-switch on="field.datatype">
+
+					<!-- When String -->
+					<div ng-if="field.placeHolder">
+					    <input type="{{field.datatype | inputFilter}}" placeholder="{{field.placeHolder}}" ng-model="fieldInput[field.name]" id="{{field.name}}" class="form-control" ng-disabled="{{field.readOnly}}" ng-switch-when="String" />
+					</div>
+					<div ng-if="!field.placeHolder">
+					    <input type="{{field.datatype | inputFilter}}" placeholder="{{field.name}}" ng-model="fieldInput[field.name]" id="{{field.name}}" class="form-control" ng-disabled="{{field.readOnly}}" ng-switch-when="String" />
+					</div>
+
+					<!-- When ListedString -->
+					<div class="input-group" ng-switch-when="ListedString" ng-if="field.allowedValues">
+						<div class="btn-group" ng-init="fieldInput[field.name] = field.allowedValues[0]">
+							<a class="btn btn-default" ng-repeat="option in field.allowedValues" ng-class="{'active btn-primary': fieldInput[field.name] === option}" ng-click="fieldInput[field.name] = option">{{option}}</a>
+						</div>
+					</div>
+
+					<!-- When DropdownString -->
+					<div class="input-group" ng-switch-when="DropdownString" ng-if="field.allowedValues" style="width:100%; margin-top:10px;">
+						<select style="width:100%;" ng-model="fieldInput[field.name]">
+							<option ng-repeat="option in field.allowedValues">{{option}}</option>
+						</select>
+					</div>
+
+					<!-- When CCDAWidget -->
+					<div class="input-group" ng-switch-when="CCDAWidget" style="width:100%; margin-top:10px;">
+						<ccda-widget ng-model="fieldInput.ccdaDocument"></ccda-widget>
+					</div>
+					<!-- When CCDAWidgetReceiver -->
+					<div class="input-group" ng-switch-when="CCDAWidgetReceiver" style="width:100%; margin-top:10px;">
+						<ccda-widgetreceiver ng-model="fieldInput.ccdaDocument"></ccda-widgetreceiver>
+					</div>
+
+					<!-- When CCDAWidgetxdr -->
+					<div class="input-group" ng-switch-when="CCDAWidgetXdr" style="width:100%; margin-top:10px;">
+						<ccda-widgetxdr ng-model="fieldInput.ccdaDocument"></ccda-widgetxdr>
+					</div>
+					<!-- When CCDAWidgetReceiverSdr -->
+					<div class="input-group" ng-switch-when="CCDAWidgetReceiverXdr" style="width:100%; margin-top:10px;">
+						<ccda-widgetreceiverxdr ng-model="fieldInput.ccdaDocument"></ccda-widgetreceiverxdr>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="social">
+		<ul>
+			<li class="facebook vcenter" style="width:100%;">
+				<a ui-sref="{{testSystem}}.{{edgeProtocol}}.description({id: test.id})" ng-click="scrollTop()">
+					<span>More Info.</span>
+				</a>
+			</li>
+			<li class="twitter" style="width:100%;">
+				<a ui-sref="{{testSystem}}.{{edgeProtocol}}.logs" ng-click="displayLog(test); scrollTop()">
+					<span>Logs</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</li>

@@ -1,0 +1,57 @@
+<div class="modal-header" style="background-color: #428bca;">
+	<h4 class="modal-title">
+		<i class="glyphicon glyphicon-star glyphicon-Home"></i>
+		{{modalTitle}}
+	</h4>
+</div>
+<div class="modal-body" ng-switch="modalType">
+	<!-- For error and succes display -->
+	<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</uib-alert>
+
+	<div ng-switch-default>
+		<p>
+			Don't have an account? <a href="" ng-click="signUpPage()">Sign up</a>
+		</p>
+		<form role="form">
+			<div class="form-group">
+				<label for="inputUsernameEmail">Username</label>
+				<input type="text" class="form-control" id="inputUsernameEmail" ng-model="login.username" placeholder="Username" ng-keyup="hitEnter($event)" autofocus>
+			</div>
+			<div class="form-group">
+				<a class="pull-right" href="" ng-click="forgotPage()" tabindex="-1">Forgot password?</a>
+				<label for="inputPassword">Password</label>
+				<input type="password" class="form-control" id="inputPassword" ng-model="login.password" placeholder="Password" ng-keyup="hitEnter($event)" autocomplete="off">
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" checked>Remember me</label>
+			</div>
+		</form>
+	</div>
+	<form role="form" ng-switch-when="signUp">
+		<div class="form-group">
+			<label for="inputUsernameEmail">Username</label>
+			<input type="email" class="form-control" id="inputUsernameEmail" ng-model="newUser.username" placeholder="Enter Email Address">
+		</div>
+		<div class="form-group">
+			<label for="inputPassword">Password</label>
+			<input type="password" class="form-control" id="inputPassword" ng-model="newUser.password" placeholder="Enter password">
+		</div>
+		<div class="form-group">
+			<label for="inputPassword">Repeat Password</label>
+			<input type="password" class="form-control" id="inputPassword" ng-model="repeatPassword.password" placeholder="Confirm password">
+		</div>
+	</form>
+
+	<form role="form" ng-switch-when="forgotPass">
+		<p>We will send you an email with a new password.</p>
+		<div class="form-group">
+			<label for="forgotUsername">Username</label>
+			<input type="text" class="form-control" id="forgotUsername" ng-model="forgot.username" placeholder="Enter Username Email Address">
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+	<button type="submit" class="btn btn-primary" ng-click="save()">{{buttonSuccess}}</button>
+</div>

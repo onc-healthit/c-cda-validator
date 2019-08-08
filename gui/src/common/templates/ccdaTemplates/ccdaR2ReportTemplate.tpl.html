@@ -1,0 +1,151 @@
+<div>
+
+    <div class="alert" ng-class="{true:'alert-danger', false:'alert-success'}[data.resultsMetaData.resultMetaData[0].count > 0
+    || data.resultsMetaData.resultMetaData[3].count > 0
+    ||data.resultsMetaData.resultMetaData[6].count > 0
+    || data.resultsMetaData.serviceError]">
+
+        <table style="width:100%;">
+            <tr>
+                <td style="padding-right: 10px;" ng-switch on="data.resultsMetaData.resultMetaData[0].count > 0
+                    || data.resultsMetaData.resultMetaData[3].count > 0
+    				||data.resultsMetaData.resultMetaData[6].count > 0
+    				|| data.resultsMetaData.serviceError">
+                    <i class="fa fa-times fa-4x" ng-switch-when="true"></i>
+                    <i class="fa fa-check fa-4x" ng-switch-when="false"></i>
+                </td>
+                <td>
+                    <strong>C-CDA Document Details:</strong> {{data.resultsMetaData.objectiveProvided}} /  {{data.ccdafilenaame}} - {{data.resultsMetaData.ccdaDocumentType}}
+                    <br>
+                    <strong ng-if="data.resultsMetaData.serviceErrorMessage">Service Error Message:</strong> {{data.resultsMetaData.serviceErrorMessage}}
+                </td>
+                <td class="pull-right" style="text-align: center;" ns-popover ns-popover-template="popover" ns-popover-trigger="mouseenter" ns-popover-placement="left" ns-popover-theme="ns-popover-tooltip-theme">
+                    <i class="fa fa-info-circle fa-4x"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div ng-if="data" class="reportTab">
+
+        <div class="row">
+            <div class="list-group">
+                <div class="list-group">
+                    <div class="list-group-item col-xs-4" ng-repeat="item in data.resultsMetaData.resultMetaData">
+                        <span class="badge {{item.type | ccdaClassFilter}}">{{item.count}}</span>
+                        <a ng-click="gotoLink(item.type)">{{item.type}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <uib-tabset>
+            <uib-tab heading="C-CDA IG" active="tabs[0].active" class="clickable not-selectable">
+                <div class="error-notice">
+                    <div ng-repeat="item in data.ccdaValidationResults" ng-switch on="item.type">
+                        <div id="C-CDA MDHT Conformance Error" class="oaerror danger" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="C-CDA MDHT Conformance Error">
+                            <strong>Error</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                        <div id="C-CDA MDHT Conformance Warning" class="oaerror warning" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="C-CDA MDHT Conformance Warning">
+                            <strong>Warning</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                        <div  id="C-CDA MDHT Conformance Info" class="oaerror info" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="C-CDA MDHT Conformance Info">
+                            <strong>Info</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+
+            <uib-tab heading="C-CDA VOCAB" active="tabs[1].active" class="clickable not-selectable">
+                <div class="error-notice">
+                    <div ng-repeat="item in data.ccdaValidationResults" ng-switch on="item.type">
+                        <div id="ONC 2015 S&CC Vocabulary Validation Conformance Error" class="oaerror danger" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="ONC 2015 S&CC Vocabulary Validation Conformance Error">
+                            <strong>Error</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                    </div>
+                    <div ng-repeat="item in data.ccdaValidationResults" ng-switch on="item.type">
+                        <div id="ONC 2015 S&CC Vocabulary Validation Conformance Warning" class="oaerror warning" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="ONC 2015 S&CC Vocabulary Validation Conformance Warning">
+                            <strong>Warning</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                    </div>
+                    <div ng-repeat="item in data.ccdaValidationResults" ng-switch on="item.type">
+                        <div id="ONC 2015 S&CC Vocabulary Validation Conformance Info" class="oaerror info" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="ONC 2015 S&CC Vocabulary Validation Conformance Info">
+                            <strong>Info</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+
+            <uib-tab heading="REF C-CDA" active="tabs[2].active" class="clickable not-selectable">
+                <div class="error-notice">
+                    <div ng-repeat="item in data.ccdaValidationResults" ng-switch on="item.type">
+                        <div id="ONC 2015 S&CC Reference C-CDA Validation Error" class="oaerror danger" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="ONC 2015 S&CC Reference C-CDA Validation Error">
+                            <strong>Error</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                        <div id="ONC 2015 S&CC Reference C-CDA Validation Warning" class="oaerror warning" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="ONC 2015 S&CC Reference C-CDA Validation Warning">
+                            <strong>Warning</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                        <div id="ONC 2015 S&CC Reference C-CDA Validation Info" class="oaerror info" ng-mouseenter="showDiv=!showDiv" ng-mouseleave="showDiv=!showDiv" ng-init="showDiv=false" ng-switch-when="ONC 2015 S&CC Reference C-CDA Validation Info">
+                            <strong>Info</strong> - <p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.description}}</p>
+                            <div ng-include="'error_display'"></div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+
+    <script type="text/ng-template" id="popover">
+        <div class="triangle"></div>
+        <div class="ns-popover-tooltip">
+            Result MetaData:
+            <br>
+            <div ng-repeat="item in data.resultsMetaData.resultMetaData"><strong>Count {{item.type}}: {{item.count}}</strong>
+                <br>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="error_display">
+        <strong style="color: black;"><p style="display: inline; word-break: break-all; word-wrap: break-word;">{{item.xPath}}</p></strong>
+        <div>
+            <u>Line number:</u>
+            <strong style="color: black;"> {{item.documentLineNumber}}</strong>
+        </div>
+        <div ng-show="showDiv">
+            <div ng-if="item.expectedCodeSystem">
+                <u>Expected Code System:</u> {{item.expectedCodeSystem}}
+            </div>
+            <div ng-if="item.item.actualCodeSystem">
+                <u>Actual Code System:</u> {{item.actualCodeSystem}}
+            </div>
+            <div ng-if="item.expectedCode">
+                <u>Expected Code:</u> {{item.expectedCode}}
+            </div>
+            <div ng-if="item.actualCode">
+                <u>Actual Code:</u> {{item.actualCode}}
+            </div>
+            <div ng-if="item.expectedDisplayName">
+                <u>Expected Display Name:</u> {{item.expectedDisplayName}}
+            </div>
+            <div ng-if="item.actualDisplayName">
+                <u>Actual Display Name:</u> {{item.actualDisplayName}}
+            </div>
+            <div ng-if="item.expectedValueSet">
+                <u>Expected value Set:</u> {{item.expectedValueSet}}
+            </div>
+        </div>
+    </script>
+
+</div>

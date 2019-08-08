@@ -1,0 +1,68 @@
+<li>
+	<time ng-if="test.status === 'na'" ng-click="runXdr(test)">
+		<span class="month">RUN</span>
+	</time>
+
+	<time class="loading" ng-if="test.status === 'loading'">
+		<!-- Loading spinner -->
+		<div us-spinner></div>
+	</time>
+
+	<time ng-if="test.status === 'manual'" ui-sref="{{testSystem}}.{{edgeProtocol}}.xdrlogs" ng-click="displayLog(test); scrollTop()">
+		<span class="pending">Waiting</span>
+		<span class="refresh">Validation</span>
+	</time>
+
+	<time class="pass" ng-if="test.status === 'success'" ng-click="runXdr(test)">
+		<span class="day">
+			<i class="fa fa-check"></i>
+		</span>
+		<!-- <span class="month">PASS</span> -->
+	</time>
+	<time class="fail" ng-if="test.status === 'error'" ng-click="runXdr(test)">
+		<span class="fail">
+			<i class="fa fa-times"></i>
+		</span>
+		<span class="retry">
+			Retry
+		</span>
+	</time>
+	<div id="test_{{test.name}}" class="info">
+		<h2 class="title">Test ID #{{test.ID}}</h2>
+		<p class="desc">{{test['Purpose/Description']}}</p>
+
+		<div class="row filling-fields xdrfield" ng-if="test.status === 'na' || test.status === 'error'">
+			<div class="col-md-8 col-md-offset-2">
+				<p><strong>Step 1:</strong> Provide your endpoint and hit Run to send XDR</p>
+			</div>
+			<label for="endpoint" class="col-md-1 small-padding control-label">
+				Endpoint:
+				<i class="glyphicon glyphicon-question-sign" tooltips title="Endpoint" tooltip-side="top"></i>
+			</label>
+
+			<div class="col-md-7 small-padding">
+				<input type="text" placeholder="Endpoint" ng-model="test.endpoint" id="endpoint" class="form-control" />
+			</div>
+		</div>
+
+		<div class="row filling-fields xdrfield" ng-if="test.status === 'manual'">
+			<div class="col-md-8 col-md-offset-2">
+				<p><strong>Step 2:</strong> Check the logs to accept/reject the response</p>
+			</div>
+		</div>
+	</div>
+	<div class="social">
+		<ul>
+			<li class="facebook vcenter" style="width:100%;">
+				<a ui-sref="{{testSystem}}.{{edgeProtocol}}.xdrdescription({id: test.ID})" ng-click="scrollTop()">
+					<span>Description</span>
+				</a>
+			</li>
+			<li class="twitter" style="width:100%;">
+				<a ui-sref="{{testSystem}}.{{edgeProtocol}}.xdrlogs" ng-click="displayLog(test); scrollTop()">
+					<span>Logs</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</li>

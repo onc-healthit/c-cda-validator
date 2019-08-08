@@ -1,0 +1,279 @@
+@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
+.event-list {
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+.event-list > li {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px rgb(51, 51, 51);
+    box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+    padding: 0px;
+    margin: 0px 0px 20px;
+}
+.event-list > li > .leftButton > time {
+    display: inline-block;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(197, 44, 102);
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.event-list > li > .leftButton > time:hover {
+    color: rgb(255, 255, 255);
+    background-color: #FFBF00;
+}
+.event-list > li:nth-child(even) > time {
+    /*background-color: rgb(165, 82, 167);*/
+}
+.event-list > li > .leftButton > .cancel {
+    display: inline-block;
+    width: 100%;
+    border-top: 1px solid grey;
+    color: rgb(255, 255, 255);
+    background-color: #990000;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.event-list > li > .leftButton > .cancel:hover {
+    color: rgb(255, 255, 255);
+    background-color: #FFBF00;
+}
+.event-list > li > .leftButton > time > span {
+    display: none;
+}
+.event-list > li > .leftButton > time > .day {
+    display: block;
+    font-size: 56pt;
+    font-weight: 100;
+    line-height: 1;
+    margin-top: 20px;
+}
+.event-list > li > .leftButton > time > .fail {
+    display: block;
+    font-size: 50pt;
+    font-weight: 100;
+    line-height: 1;
+    margin-top: 10px;
+}
+.event-list > li > .leftButton > time > .retry {
+    display: block;
+    font-size: 20pt;
+    font-weight: 500;
+    line-height: 1;
+    /*margin-top: 20px;*/
+}
+.event-list > li > .leftButton > time > .eerror {
+    display: block;
+    font-size: 20pt;
+    font-weight: 500;
+    line-height: 1;
+    /*margin-top: 20px;*/
+}
+.event-list > li > .leftButton > time > .refresh {
+    display: block;
+    font-size: 14pt;
+    font-weight: 500;
+    line-height: 1;
+    /*margin-top: 20px;*/
+}
+.event-list > li > .leftButton > time > .month {
+    display: block;
+    font-size: 24pt;
+    font-weight: 900;
+    line-height: 1;
+    margin-top: 43px;
+}
+.event-list > li > .leftButton > time > .pending {
+    display: block;
+    font-size: 16pt;
+    font-weight: 900;
+    line-height: 1;
+    margin-top: 35px;
+}
+.event-list > li > img {
+    width: 100%;
+}
+.event-list > li > .info {
+    padding-top: 5px;
+    text-align: center;
+}
+.event-list > li > .info > .title {
+    font-size: 17pt;
+    font-weight: 700;
+    margin: 0px;
+}
+.event-list > li > .info > .desc {
+    font-size: 13pt;
+    font-weight: 300;
+    margin: 0px;
+}
+.event-list > li > .info > ul, .event-list > li > .social > ul {
+    display: table;
+    list-style: none;
+    margin: 10px 0px 0px;
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+}
+.event-list > li > .social > ul {
+    margin: 0px;
+}
+.event-list > li > .info > ul > li, .event-list > li > .social > ul > li {
+    display: table-cell;
+    cursor: pointer;
+    color: rgb(30, 30, 30);
+    font-size: 11pt;
+    font-weight: 300;
+    padding: 3px 0px;
+}
+.event-list > li > .info > ul > li > a {
+    display: block;
+    width: 100%;
+    color: rgb(30, 30, 30);
+    text-decoration: none;
+}
+.event-list > li > .social > ul > li {
+    padding: 0px;
+}
+.event-list > li > .social > ul > li > a {
+    padding: 0px;
+}
+.event-list > li > .info > ul > li:hover, .event-list > li > .social > ul > li:hover {
+    color: rgb(30, 30, 30);
+    background-color: rgb(200, 200, 200);
+}
+.facebook a, .twitter a, .google-plus a {
+    display: block;
+    width: 100%;
+    color: rgb(75, 110, 168) !important;
+}
+.twitter a {
+    color: rgb(79, 213, 248) !important;
+}
+.google-plus a {
+    color: rgb(221, 75, 57) !important;
+}
+.facebook:hover {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(75, 110, 168) !important;
+}
+.facebook:hover a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(75, 110, 168) !important;
+}
+.twitter:hover {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(79, 213, 248) !important;
+}
+.twitter:hover a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(79, 213, 248) !important;
+}
+.google-plus:hover a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(221, 75, 57) !important;
+}
+@media (min-width: 768px) {
+    .event-list > li {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+    }
+    .event-list > li > .leftButton {
+        position: relative !important;
+        float: right;
+        width: 120px;
+        display: inline-block;
+    }
+    .event-list > li > .info {
+        background-color: rgb(245, 245, 245);
+        overflow: hidden;
+    }
+    .event-list > li > .leftButton > time, .event-list > li > img {
+    	position: relative !important;
+        width: 120px;
+        height: 120px;
+        padding: 0px;
+        margin: 0px;
+    }
+    .event-list > li > .leftButton >.cancel {
+    	width: 120px;
+        height: 30px;
+    }
+    .event-list > li > .info {
+        position: relative;
+        height: 100%;
+        min-height: 120px;
+        text-align: left;
+        padding-right: 100px;
+    }
+    .event-list > li > .runningInfo {
+        min-height: 150px;
+    }
+    .event-list > li > .info > .title, .event-list > li > .info > .desc {
+        padding: 0px 10px;
+    }
+    .event-list > li > .info > ul {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+    }
+    .event-list > li > .social {
+        position: absolute;
+        top: 0px;
+        right: 121px;
+        display: block;
+        width: 100px;
+    }
+    .event-list > li > .social > ul {
+        border-left: 1px solid rgb(230, 230, 230);
+    }
+    .event-list > li > .social > ul > li {
+        display: block;
+        padding: 10px 0px 10px 0px;
+    }
+    .event-list > li > .social > ul > li > a {
+        display: block;
+        width: 100px;
+        padding: 10px 0px 9px;
+    }
+}
+.filling-fields {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.pass {
+    color: rgb(255, 255, 255) !important;
+    background-color: #5AD700 !important;
+}
+.fail {
+    color: rgb(255, 255, 255) !important;
+    background-color: #FF0000 !important;
+}
+.loading {
+    color: rgb(255, 255, 255) !important;
+    background-color: #A4A4A4 !important;
+}
+
+.xdrfield, .actions {
+    margin-bottom: 15px;
+}
+.xdrfield label {
+    float: left;
+    width: 22%;
+    text-align: right;
+    padding-right: 10px;
+    margin: 5px 0px 5px 0px;
+}
+.xdrfield input {
+    width: 70%;
+    margin: 0px;
+}

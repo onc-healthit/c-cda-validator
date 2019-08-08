@@ -1,0 +1,99 @@
+
+
+<div>		
+   <div ng-if="data.Discovery">
+       <div ng-if="data.year2014">
+			<div id="direct_address">
+			   <div><span> <strong><i class="a fa fa-envelope"></i>&nbsp;&nbsp;Direct Address</strong>:{{data.Direct_address_2014}}</span></div>
+			</div>
+	   </div>
+	    <div ng-if="data.year2015">
+			<div id="direct_address1">
+			   <div><span> <strong><i class="a fa fa-envelope"></i>&nbsp;&nbsp;Direct Address</strong>:{{data.Direct_address_2015}}</span></div>
+			</div>
+		</div>
+    </div>
+	<div id="hosting-testcase-desc" style="font-size:70%;background:white">
+
+	<div ng-if="data.Hosting">
+	   <div><span><strong>Binding Type</strong>: {{data.Binding_Type}}</span>
+	   </div>
+	   <div><span><strong>Location Type</strong>: {{data.Location_Type}}</span>
+	 </div>
+	</div>
+	   <div><span><strong>Negative</strong>: {{data.Negative}}</span>
+	   </div>
+	   <div><span><strong>Optional</strong>: {{data.Optional}}</span>
+	   </div>
+	   <div><span><strong>Description</strong>: {{data.Description}}</span>
+	   </div>
+	   <div><span><strong>RTM Sections</strong>:{{data.RTM_Sections}}</span>
+	   </div>
+	   <div><span><strong>Underlying Specification References</strong>: </span>
+	   	    <ul>
+	   	       <div ng-if="data.RFC_4398"><li>RFC 4398: {{data.RFC_4398}}</li></div>
+	   	       <div ng-if="data.RFC_4298"><li>RFC 4298: {{data.RFC_4298}}</li></div>
+	   	       <div ng-if="data.RFC_5280"><li>RFC 5280: {{data.RFC_5280}}</li></div>
+	   	       <div ng-if="data.Direct_SHT"><li>Direct Applicability Statement for Secure Health Transport:{{data.Direct_SHT}}</li></div>
+	   	       <div ng-if="data.RFC_2798"><li>RFC 2798: {{data.RFC_2798}}</li></div>
+	   	       <div ng-if="data.RFC_2782"><li>RFC 2782: {{data.RFC_2782}}</li></div>
+	   	       <div ng-if="data.RFC_1035"><li>RFC 1035: {{data.RFC_1035}}</li></div>
+	   	    </ul>
+	   </div>
+	   <p>
+	   <div><span><strong>Instructions</strong>: {{data.Instructions}}</span>
+	   </div>
+	   <div ng-if="data.Discovery">
+	   <div><span><strong>Target Certificate(s)</strong>: </span></div>
+       </div>
+	   <div ng-repeat="fieldTarget in data.Target_Certificate">
+	       <ul>
+	         <li><div><span><strong>{{fieldTarget.name}}</strong>:</span></div></li>
+	         <ul>
+	            <li><div><span><strong>Valid</strong>:{{fieldTarget.Valid}}</span></div></li>
+	            <li><div><span><strong>Binding Type</strong>:{{fieldTarget.Binding_Type}}</span></div></li>
+			        <div ng-repeat="fieldlocTarget in fieldTarget.Locaton">
+			        <li><div><span><strong>Location</strong>:</span></div></li>
+			           <ul>
+			              <li><div><span><strong>Type</strong>:{{fieldlocTarget.Type}}</span></div></li>
+			              <li><div><span><strong>Mail Address</strong>:{{fieldlocTarget.Mail_Address}}</span></div></li>
+			              <div ng-if="fieldlocTarget.Host">
+			                  <li><div><span><strong>Host</strong>:{{fieldlocTarget.Host}}</span></div></li>
+			              </div>
+			              <div ng-if="fieldlocTarget.Port">
+			                  <li><div><span><strong>Port</strong>:{{fieldlocTarget.Port}}</span></div></li>
+                          </div>			              
+                       </ul>
+			        </div>
+			         <li><div><span><strong>Description</strong>:{{fieldTarget.Description}}</span></div></li>
+	         </ul>
+	       </ul>
+	   </div>
+	   	<div><strong>Background Certificate(s):</strong></div>
+	   <div ng-controller="DCDTValidatorCtrl" ng-repeat="field in data.Background_Certificate">
+	       <ul>
+	         <li><div><span><strong>{{field.name}}</strong>:</span></div></li>
+	         <ul>
+	            <li><div><span><strong>Valid</strong>:{{field.Valid}}</span></div></li>
+	            <li><div><span><strong>Binding Type</strong>:{{field.Binding_Type}}</span></div></li>
+			        <div ng-repeat="fieldloc in field.Locaton">
+			        <li><div><span><strong>Location</strong>:</span></div></li>
+			           <ul>
+			              <li><div><span><strong>Type</strong>:{{fieldloc.Type}}</span></div></li>
+			              <li><div><span><strong>Mail Address</strong>:{{fieldloc.Mail_Address}}</span></div></li>
+			              <div ng-if="fieldloc.Host">
+			                  <li><div><span><strong>Host</strong>:{{fieldloc.Host}}</span></div></li>
+			              </div>
+			              <div ng-if="fieldloc.Port">
+			                  <li><div><span><strong>Port</strong>:{{fieldloc.Port}}</span></div></li>
+                          </div>
+                       </ul>
+			        </div>
+			         <li><div><span><strong>Description</strong>:{{field.Description}}</span></div></li>
+	         </ul>
+	       </ul>
+	   </div>
+
+	</div>
+
+ </div>

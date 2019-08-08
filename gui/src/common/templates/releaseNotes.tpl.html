@@ -1,0 +1,23 @@
+<h2><i class="fa fa-newspaper-o"></i> Release Notes</h2>
+<div class="row">
+    <div class="col-md-2">
+        <div ng-repeat="version in versions">
+            <div ng-repeat="(key, value) in version">
+                <h3><a href="" ng-click="goToVersion(value.date)" style="text-decoration: none">{{key}}</a></h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10" style="border-left: 2px solid #000;">
+        <div ng-repeat="version in versions">
+            <div ng-repeat="(key, value) in version" id="{{value.date}}">
+                <h3 style="margin-bottom:0px;">{{key}} - <small>{{value.date | date}}</small></h3>
+                <ul ng-repeat="note in value.notes">
+                    <li>{{note.title}}</li>
+                    <ul ng-repeat="line in note.lines">
+                        <li>{{line}}</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

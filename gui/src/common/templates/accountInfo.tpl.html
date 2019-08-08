@@ -1,0 +1,19 @@
+<div class="row">
+	<h2><i class="fa fa-thumb-tack"></i> Account Info</h2>
+	<hr>
+	<p>
+		Username: {{userInfo.username}}
+	</p>
+	<p>
+		Direct Address List:
+	</p>
+	<ul>
+		<li ng-repeat="direct in directList">{{direct}}</li>
+	</ul>
+	<p>
+		SMTP Profiles List:
+	</p>
+	<ul>
+		<li ng-repeat="smtp in smtpProfiles">{{smtp.profileName}} - {{smtp.sutSMTPAddress}}</li>
+	</ul>
+</div>

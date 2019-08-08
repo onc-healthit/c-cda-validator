@@ -1,0 +1,46 @@
+<div class="modal-header" style="background-color: #428bca;">
+    <h4 class="modal-title">
+		<i class="glyphicon glyphicon-star glyphicon-Home"></i>
+		{{modalTitle}}
+	</h4>
+</div>
+<div class="modal-body" ng-switch="modalType">
+    <!-- For error and succes display -->
+    <div>
+        <div class="form-group">
+            <label class="control-label" for="sutRole">Message format&nbsp;
+                <!-- <i class="fa fa-question-circle" tooltips tooltip-title="The role of the System under Test"  tooltip-trigger tooltip-placement="top" tooltip-side="top"></i> -->
+            </label>
+                                <!-- <a class="btn btn-default" ng-class="{'sender': 'active'}[sutRole]" ng-click="sutRole='sender'">Sender</a>
+										<a class="btn btn-default" ng-class="{'receiver': 'active'}[sutRole]" ng-click="sutRole='receiver'">Receiver</a> -->
+
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <div ng-dropover ng-dropover-options="{'triggerEvent':'click', 'verticalOffset': 10}">
+                        <button class="btn btn-default">Select document...</button>
+                        <div ng-dropover-contents class="arrowed">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search..." ng-model="ccdaDocSearch" style="margin-bottom: 10px;">
+                                </div>
+                            </form>
+                            <finder-tree data="ccdaData" ng-model="ccdaDocument" search-filter="ccdaDocSearch"></finder-tree>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <span style="font-style: italic">Validation Objective: </span><strong style="margin-left: 20px; display: inline; word-break: break-all; word-wrap: break-word;" ng-if="ccdaDocument.path.length">{{ccdaDocument.path[ccdaDocument.path.length - 1]}}</strong>
+                    <br>
+                    <span style="font-style: italic">Reference Filename: </span><strong style="margin-left: 20px;display: inline; word-break: break-all; word-wrap: break-word;">{{ccdaDocument.name}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+    <button type="submit" class="btn btn-primary" ng-disabled="!ccdaDocument.name" ng-click="save()">{{buttonSuccess}}</button>
+</div>

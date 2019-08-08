@@ -1,0 +1,32 @@
+<div class="modal-header" style="background-color: #428bca;">
+	<h4 class="modal-title">
+		<i class="glyphicon glyphicon-star glyphicon-Home"></i>
+		{{modalTitle}}
+	</h4>
+</div>
+<div class="modal-body" ng-switch="modalType">
+	<!-- For error and succes display -->
+	<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</uib-alert>
+
+	<div ng-switch-default>
+		<form role="form">
+			<div class="form-group">
+				<label for="inputUsernameEmail">Username</label>
+				<input type="text" class="form-control" id="inputUsernameEmail" ng-model="adminlogin.username" placeholder="Username" ng-keyup="hitEnter($event)" autofocus>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword">Password</label>
+				<input type="password" class="form-control" id="inputPassword" ng-model="adminlogin.password" placeholder="Password" ng-keyup="hitEnter($event)" autocomplete="off">
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" checked>Remember me</label>
+			</div>
+		</form>
+	</div>
+
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+	<button type="submit" class="btn btn-primary" ng-click="save()">{{buttonSuccess}}</button>
+</div>

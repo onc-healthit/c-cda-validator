@@ -1,0 +1,99 @@
+<div id="hosting-results" >
+	<div class="form-group">
+		<div class="">
+			<span class="form-cell form-cell-label"> <span
+				class="glyphicon glyphicon-certificate glyphicon-type-info"></span>Results
+			</span>
+		</div>
+	</div>
+   <div ng-repeat="dataobj in data">
+            <div ng-repeat="itemtObj in data[data.indexOf(dataobj)].itemloop">
+	<div ng-if="itemtObj.status ==='success'">
+
+	<div ng-controller="DCDTValidatorCtrl" id="testcase-results-accordion" style="font-size:70%;background:white">
+
+			<!-- item loop -->
+            <div ng-repeat="item in itemtObj.items">
+
+		<div><h3 style="font-size:100%">
+		<div ng-if="item.success==false">
+			<uib-alert type="danger" ng-click="showhidediv(itemtObj.testcase)">
+				<div>
+					<span><strong><i class="a fa fa-close fa-2x"></i>Testcase</strong>: {{itemtObj.testcase.testcase}}</span>
+				</div>
+				<div>
+					<span><strong><i class="a fa fa-close fa-2x"  style="display:none">&nbsp;</i>Direct Address</strong>: {{itemtObj.testcase.directAddr}}</span>
+				</div>
+			</uib-alert>
+		</div>
+		<div ng-if="item.success==true">
+			<uib-alert type="success" ng-click="showhidediv(itemtObj.testcase)">
+				<div>
+					<span><strong><i class="a fa fa-check-circle-o fa-3x"></i>Testcase</strong>: {{itemtObj.testcase.testcase}}</span>
+				</div>
+				<div>
+					<span><strong><i></i>Direct Address</strong>: {{itemtObj.testcase.directAddr}}</span>
+				</div>
+			</uib-alert>
+		</div>		
+		</h3>
+		</div>
+		<div ng-show="itemtObj.testcase.expandResult" >
+			<div>
+				<span><strong>Success</strong>: {{item.success}}</span>
+			</div>
+			
+            <div ng-repeat="procMsg in item.procMsgs">
+                <strong></strong>
+            </div>
+      <div><strong>Processing Message(s): </strong>None</div>
+      <div ng-if="item.procMsgs | isEmpty">
+      </div>
+		<span><strong>Processed Step(s)</strong>:
+            <div ng-repeat="procStep in item.procSteps">
+				   <div><span>{{$index+1}}. <strong>{{procStep.desc.text}}</strong></span></div>
+			        <ul><li><div><span><strong>Success</strong>:{{procStep.success}} </span></div></li>
+			         <div ng-repeat="msg in procStep.msgs">
+			         <div ng-if="msg.level==='INFO' || msg.level==='ERROR'">
+			            <li><div><span><strong>Message(s)</strong>: </span></div></li>
+			            <ul><li><p style="display: inline; width: 150px; word-break: break-all; word-wrap: break-word;">
+			                    {{msg.text}}
+			                    </p></li>
+			            </ul>
+			         </div>
+			         </div>
+	    <div ng-if="year2014">
+			         <div ng-if="item.msgs">
+			            <li><div><span><strong>Message(s)</strong>: </span></div></li>
+			            <ul><li><p style="display: inline; width: 150px; word-break: break-all; word-wrap: break-word;">
+			                    {{item.msgs[0].toString()}}
+			                    </p></li>
+			            </ul>
+			         </div>
+        </div>
+			         		         
+			            <li><div><span><strong>Binding Type</strong>:{{procStep.bindingType}} </span></div></li>
+			            <li><div><span><strong>Location Type</strong>:{{procStep.locType}} </span></div></li>
+			        </ul>
+              </div>
+				<div>
+					<strong>Discovered Valid Certificate</strong>:<span class="panel-heading" ng-bind-html="checkEmpty(item.discoveredCertInfo.cert)"></span>
+					<div ng-if="item.discoveredCertInfo.cert">
+					  <pre style="font-size:100%;"><div class="panel-heading" ng-bind-html="renderHtml(item.discoveredCertInfo.cert)"></pre>
+					</div>
+				</div>
+				<div>
+				<strong>Discovered Invalid Certificate(s)</strong>:<span class="panel-heading" ng-bind-html="checkEmpty(item.invalidDiscoveredCertInfos.cert)"></span>
+				  <div ng-if="renderHtml(item.invalidDiscoveredCertInfos.cert)">
+					<pre style="font-size:100%;"><div class="panel-heading" ng-bind-html="renderHtml(item.invalidDiscoveredCertInfos.cert)"></pre>
+			      </div>
+				</div>
+		</div>
+	</div>
+
+	</div>
+   </div>
+   </div>
+
+ </div>
+</div>

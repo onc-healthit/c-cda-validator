@@ -1,0 +1,106 @@
+{
+    "ccda": [{
+        "email": "direct-clinical-summary",
+        "description": "ONC 2014 Edition Certification 170.314(e)(2) - Clinical Summary"
+    }, {
+        "email": "direct-ambulatory2",
+        "description": "ONC 2014 Edition Certification 170.314(b)(2) Transition of Care/Referral Summary - For Ambulatory Care"
+    }, {
+        "email": "direct-ambulatory7",
+        "description": "ONC 2014 Edition Certification 170.314(b)(7) Data Portability - For Ambulatory Care"
+    }, {
+        "email": "direct-ambulatory1",
+        "description": "ONC 2014 Edition Certification 170.314(b)(1) Transition of Care Receive - For Ambulatory Care"
+    }, {
+        "email": "direct-inpatient2",
+        "description": "ONC 2014 Edition Certification 170.314(b)(2) Transition of Care/Referral Summary - For Inpatient Care"
+    }, {
+        "email": "direct-inpatient7",
+        "description": "ONC 2014 Edition Certification 170.314(b)(7) Data Portability - For Inpatient Care"
+    }, {
+        "email": "direct-inpatient1",
+        "description": "MU 2 170.314(b)(1) Transition of Care Receive - For Inpatient Care"
+    }, {
+        "email": "direct-vdt-ambulatory",
+        "description": "ONC 2014 Edition Certification 170.314 (e)(1) Ambulatory Summary"
+    }, {
+        "email": "direct-vdt-inpatient",
+        "description": "ONC 2014 Edition Certification 170.314 (e)(1) Inpatient Summary"
+    }, {
+        "email": "ccda",
+        "description": "Non-specific CCDA"
+    }],
+
+    "ccdar2": [{
+        "email": "170.315_b1_toc_amb_1",
+        "description": "Sample 1 of ambulatory"
+    }, {
+        "email": "170.315_b1_toc_amb_2",
+        "description": "Sample 2 of ambulatory"
+    }, {
+        "email": "170.315_b1_toc_amb_3",
+        "description": "Sample 3 of ambulatory"
+    }, {
+        "email": "170.315_b1_toc_amb_4",
+        "description": "Sample 4 of ambulatory"
+    }, {
+        "email": "170.315_b1_toc_amb_5",
+        "description": "Sample 5 of ambulatory"
+    }, {
+        "email": "170.315_b1_toc_inp_1",
+        "description": "Sample 1 of inpatient"
+    }, {
+        "email": "170.315_b1_toc_inp_2",
+        "description": "Sample 2 of inpatient"
+    }, {
+        "email": "170.315_b1_toc_inp_3",
+        "description": "Sample 3 of inpatient"
+    }, {
+        "email": "170.315_b1_toc_inp_4",
+        "description": "Sample 4 of inpatient"
+    }, {
+        "email": "170.315_b1_toc_inp_5",
+        "description": "Sample 5 of inpatient"
+    }],
+
+    "certificates": [{
+        "description": "ETT Public Cert",
+        "icon": "key",
+        "name": "ttpedge.sitenv.org.der"
+    }, {
+        "description": "ETT Trust Anchor",
+        "icon": "anchor",
+        "name": "intermediate.sitenv.org.der"
+    }, {
+        "description": "Invalid Trust Anchor",
+        "icon": "anchor",
+        "name": "invalid-trust-relation.der"
+    }, {
+        "description": "ETT Public Root CA",
+        "icon": "key",
+        "name": "sampleca.nist.gov.pem"
+    }, {
+        "description": "Human readable CDA/CCR",
+        "icon": "file-code-o",
+        "name": "ccda-samples"
+    }, {
+        "description": "2015 Certification C-CDA Test Data",
+        "icon": "file-code-o",
+        "name": "ccda-samples",
+        "link": "https://github.com/siteadmin/2015-Certification-C-CDA-Test-Data/tree/master"
+    }],
+
+    "cdaSamples": [{
+        "name": "CCDA_Ambulatory.xml"
+    }, {
+        "name": "CCDA_AMB.ZIP"
+    }, {
+        "name": "CCDA_Inpatient.xml"
+    }, {
+        "name": "CCDA_INPATIENT_IN_XDM.ZIP"
+    }, {
+        "name": "TOC_XDM_FULL_METADATA.ZIP"
+    }, {
+        "name": "TOC_XDM_LIMITED_METADATA.ZIP"
+    }]
+}

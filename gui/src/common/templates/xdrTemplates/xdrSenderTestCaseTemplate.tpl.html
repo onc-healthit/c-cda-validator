@@ -1,0 +1,168 @@
+<li ng-switch on="test.status">
+	<div class="leftButton">
+		<time ng-click="runXdr(test)" ng-switch-when="na">
+			<span class="month">RUN</span>
+		</time>
+
+		<time ng-click="configureXdr(test)" ng-switch-when="configure">
+			<span class="month">CONF</span>
+		</time>
+
+		<time class="loading" ng-switch-when="loading">
+			<!-- Loading spinner -->
+			<div us-spinner></div>
+		</time>
+
+		<time ng-click="checkXdrStatus(test)" ng-switch-when="pending">
+			<span class="pending">Pending</span>
+			<span class="refresh">Refresh</span>
+		</time>
+
+		<time ui-sref="{{testSystem}}.{{edgeProtocol}}.xdrlogs" ng-click="displayLog(test); scrollTop()" ng-switch-when="manual">
+			<span class="pending">Waiting</span>
+			<span class="refresh">Validation</span>
+		</time>
+
+		<time class="pass" ng-click="runXdr(test)" ng-switch-when="success">
+			<span class="day">
+			<i class="fa fa-check"></i>
+		</span>
+			<!-- <span class="month">PASS</span> -->
+		</time>
+		<time class="fail" ng-click="runXdr(test)" ng-switch-when="error">
+			<span class="fail">
+			<i class="fa fa-times"></i>
+		</span>
+			<span class="retry">
+			Retry
+		</span>
+		</time>
+		<div class="cancel" ng-click="reset(test)" ng-if="test.status !== 'na'">
+			<div class="pending">
+				<i class="fa fa-trash"></i>
+				<span ng-show="test.status === 'loading'">Cancel</span>
+				<span ng-hide="test.status === 'loading'">Clear</span>
+			</div>
+		</div>
+	</div>
+	<div id="test_{{test.name}}" class="info" ng-class="{ runningInfo: test.status !== 'na'}">
+		<h2 class="title">{{test.name}}</h2>
+		<p class="desc">{{test.desc}}</p>
+
+		<div class="row filling-fields xdrfield" ng-if="test.status === 'na' || test.status === 'error'">
+			<div class="col-md-8 col-md-offset-2" ng-if="!test.inputs">
+				<p><strong>Step 1:</strong> {{runText}}</p>
+			</div>
+			<div class="col-md-10 col-md-offset-1">
+				<p ng-if="test.endpoint">
+					<button class="btn btn-default" clipboard text="test.endpoint" on-copied="displayGrowl('Data copied')" title="Copy to clipboard">
+						<i class="fa fa-clipboard"></i>
+					</button>
+					<strong>Endpoint:</strong> {{test.endpoint}}
+				</p>
+				<p ng-if="test.endpointTLS">
+					<button class="btn btn-default" clipboard text="test.endpointTLS" on-copied="displayGrowl('Data copied')" title="Copy to clipboard">
+						<i class="fa fa-clipboard"></i>
+					</button>
+					<strong>Endpoint TLS:</strong> {{test.endpointTLS}}
+				</p>
+			</div>
+			<div ng-if="test.inputs">
+				<div class="col-md-8 col-md-offset-2">
+					<p><strong>Step 1:</strong> Provide your <span ng-repeat="input in test.inputs">{{input.name}}{{$last ? '. ':($index==test.inputs.length-2) ? ', and ':', a '}}</span>{{runText}}</p>
+				</div>
+				<div ng-repeat="input in test.inputs">
+					<div ng-if="input.hoverlabel">
+						<label for="{{input.key}}" class="col-md-1 small-padding control-label">
+							{{input.name}}:
+						      <i class="glyphicon glyphicon-question-sign" tooltips tooltip-title="{{input.hoverlabel}}" tooltip-side="top"></i>
+						</label>
+					</div>
+					<div ng-if="!input.hoverlabel">
+						<label for="{{input.key}}" class="col-md-1 small-padding control-label">
+							{{input.name}}:
+						      <i class="glyphicon glyphicon-question-sign" tooltips tooltip-title="{{input.name}}" tooltip-side="top"></i>
+						</label>
+					</div>
+
+					<div ng-switch on="input.type">
+
+						<div ng-switch-when="string">
+
+							<div class="col-md-7 small-padding">
+								<input type="text" placeholder="{{input.name}}" ng-model="test[input.key]" id="{{input.key}}" class="form-control" />
+							</div>
+						</div>
+
+						<!-- When CCDAWidget -->
+						<div class="col-md-7 small-padding" ng-switch-when="CCDAWidget">
+							<div class="input-group" style="width:100%; margin-top:10px;">
+								<ccda-widget ng-model="test[input.key]"></ccda-widget>
+							</div>
+						</div>
+						<!-- When CCDAWidgetReceiver -->
+						<div class="col-md-7 small-padding" ng-switch-when="CCDAWidgetReceiver">
+							<div class="input-group" style="width:100%; margin-top:10px;">
+								<ccda-widgetreceiver ng-model="test[input.key]"></ccda-widgetreceiver>
+							</div>
+						</div>
+
+						<!-- When CCDAWidgetXdr -->
+						<div class="col-md-7 small-padding" ng-switch-when="CCDAWidgetXdr">
+							<div class="input-group" style="width:100%; margin-top:10px;">
+								<ccda-widgetxdr ng-model="test[input.key]"></ccda-widgetxdr>
+							</div>
+						</div>
+
+						<!-- When CCDAWidgetReceiverSdr -->
+						<div class="col-md-7 small-padding" ng-switch-when="CCDAWidgetReceiverXdr">
+							<div class="input-group" style="width:100%; margin-top:10px;">
+								<ccda-widgetreceiverxdr ng-model="test[input.key]"></ccda-widgetreceiverxdr>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row filling-fields xdrfield" ng-if="test.status === 'pending'">
+			<div class="col-md-8 col-md-offset-2">
+				<p><strong>Step 2:</strong> Send XDR message to endpoint and refresh to check status</p>
+			</div>
+			<div class="col-md-10 col-md-offset-1">
+				<p ng-if="test.endpoint">
+					<button class="btn btn-default" clipboard text="test.endpoint" on-copied="displayGrowl('Data copied')" title="Copy to clipboard">
+						<i class="fa fa-clipboard"></i>
+					</button>
+					<strong>Endpoint:</strong> {{test.endpoint}}
+				</p>
+				<p ng-if="test.endpointTLS">
+					<button class="btn btn-default" clipboard text="test.endpointTLS" on-copied="displayGrowl('Data copied')" title="Copy to clipboard">
+						<i class="fa fa-clipboard"></i>
+					</button>
+					<strong>Endpoint TLS:</strong> {{test.endpointTLS}}
+				</p>
+			</div>
+		</div>
+
+		<div class="row filling-fields" ng-if="test.status === 'manual'">
+			<div class="col-md-8 col-md-offset-2">
+				<p><strong>Step 3:</strong> Check the logs to accept/reject the response</p>
+			</div>
+		</div>
+	</div>
+	<div class="social">
+		<ul>
+			<li class="facebook vcenter" style="width:100%;">
+				<a ui-sref="{{testSystem}}.{{edgeProtocol}}.xdrdescription({id: test.id,testObj: test})" ng-click="scrollTop()">
+					<span>More Info.</span>
+				</a>
+			</li>
+			<li class="twitter" style="width:100%;">
+				<a ui-sref="{{testSystem}}.{{edgeProtocol}}.xdrlogs" ng-click="displayLog(test); scrollTop()">
+					<span>Logs</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</li>

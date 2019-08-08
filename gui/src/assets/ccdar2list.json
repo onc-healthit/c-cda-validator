@@ -1,0 +1,324 @@
+{
+    "sender": {
+        "name": "CCDA R2.1 Sender Documents",
+        "dirs": [{
+            "name": "170.315(b)(1)-Transitions of Care-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b1_toc_amb_sample1_v1.pdf"
+            }, {
+                "name": "170.315_b1_toc_amb_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(1)-Transitions of Care-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b1_toc_inp_sample1_v1.pdf"
+            }, {
+                "name": "170.315_b1_toc_inp_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(2)–Clinical Information Reconciliation and Incorporation-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b2_ciri__r1.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(2)–Clinical Information Reconciliation and Incorporation–Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b2_ciri__r1.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(4)–Common Clinical Data Set Summary Record-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b4_ccds_create_amb_sample1_v1.pdf"
+            }, {
+                "name": "170.315_b4_ccds_create_amb_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(4)–Common Clinical Data Set Summary Record-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b4_ccds_create_inp_sample1_v1.pdf"
+            }, {
+                "name": "170.315_b4_ccds_create_inp_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(6)–Data Export-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b6_de_amb_sample1_v1.pdf"
+            }, {
+                "name": "170.315_b6_de_amb_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(6)–Data Export-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b6_de_inp_sample1_v1.pdf"
+            }, {
+                "name": "170.315_b6_de_inp_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(7)–Data Segmentation for Privacy-Ambulatory Setting",
+            "dirs": [],
+            "files": []
+        }, {
+            "name": "170.315(b)(7)–Data Segmentation for Privacy-Inpatient Setting",
+            "dirs": [],
+            "files": []
+        }, {
+            "name": "170.315(b)(9)–Care Plan-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b9_cp_amb_sample1_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(b)(9)–Care Plan-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b9_cp_inp_sample1_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(e)(1)–View,Download and Transmit-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_e1_vdt_amb_sample1_v1.pdf"
+            }, {
+                "name": "170.315_e1_vdt_amb_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(e)(1)–View,Download and Transmit-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_e1_vdt_inp_sample1_v1.pdf"
+            }, {
+                "name": "170.315_e1_vdt_inp_sample2_v1.pdf"
+            }, {
+                "name": "170.315_e1_vdt_toc_inp_ccd_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_e1_vdt_toc_inp_ds_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_e1_vdt_toc_inp_rn_r21_sample1_v1.xml"
+            }]
+        }, {
+            "name": "170.315(g)(9)–API Access to Documents-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_g9_api_access_amb_sample1_v1.pdf"
+            }, {
+                "name": "170.315_g9_api_access_amb_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "170.315(g)(9)–API Access to Documents-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_g9_api_access_inp_sample1_v1.pdf"
+            }, {
+                "name": "170.315_g9_api_access_inp_sample2_v1.pdf"
+            }]
+        }, {
+            "name": "C-CDA Implementation Guide only Validation",
+            "dirs": [],
+            "files": []
+        }],
+        "files": []
+    },
+    "receiver": {
+        "name": "CCDA R2.1 Receiver Documents",
+        "dirs": [{
+            "name": "170.315(b)(1)-Transitions of Care-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b1_toc_amb_ccd_r11_sample1_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_amb_ccd_r11_sample2_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_amb_ccd_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_amb_ccd_r21_sample2_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_amb_rn_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_amb_rn_r21_sample2_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(1)-Transitions of Care-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b1_toc_inp_ccd_r11_sample1_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_inp_ccd_r11_sample2_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_inp_ccd_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_inp_ccd_r21_sample2_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_inp_rn_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b1_toc_inp_rn_r21_sample2_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(2)–Clinical Information Reconciliation and Incorporation-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b2_ciri__r1.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(2)–Clinical Information Reconciliation and Incorporation–Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b2_ciri__r1.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r1.1_sample3_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample1_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample2_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_recon_v1.xml"
+            }, {
+                "name": "170.315_b2_ciri__r2.1_sample3_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(5)–Common Clinical Data Set Summary Record-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b5_ccds_amb_ccd_r11_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_amb_ccd_r11_sample2_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_amb_ccd_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_amb_ccd_r21_sample2_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_amb_rn_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_amb_rn_r21_sample2_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(5)–Common Clinical Data Set Summary Record-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b5_ccds_inp_ccd_r11_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_ccd_r11_sample2_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_ccd_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_ccd_r21_sample2_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_ds_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_ds_r21_sample2_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_rn_r21_sample1_v1.xml"
+            }, {
+                "name": "170.315_b5_ccds_inp_rn_r21_sample2_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(9)–Care Plan-Ambulatory Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b9_cp_amb_sample1_v1.xml"
+            }]
+        }, {
+            "name": "170.315(b)(9)–Care Plan-Inpatient Setting",
+            "dirs": [],
+            "files": [{
+                "name": "170.315_b9_cp_inp_sample1_v1.xml"
+            }]
+        }, {
+            "name": "C-CDA Implementation Guide only Validation",
+            "dirs": [],
+            "files": []
+        }, {
+            "name": "NegativeTests",
+            "dirs": [],
+            "files": [{
+                "name": "Archive.zip"
+            }]
+        }],
+        "files": []
+    }
+}

@@ -1,0 +1,33 @@
+<div class="row-fluid" id="footer">
+	<hr>
+	<div class="footeritem col-sm-4 col-md-4">
+		<p class="dateCreated">
+			<br>
+			<strong>Version: </strong>{{properties.version}}
+			<strong>Last updated: </strong>{{properties.lastUpdated}}
+		</p>
+		<p class="links">
+			<a ui-sref="edge.releaseNotes" target="_blank" style="color: #f3c50d">Release notes</a>&nbsp;&nbsp;
+			<a ui-sref="edge.announcement" target="_blank" style="color: #f3c50d">Announcements</a>&nbsp;&nbsp;
+			<a ui-sref="edge.documents" target="_blank" style="color: #f3c50d">Documents</a>
+		</p>
+	</div>
+	<div class="footeritem col-sm-5 col-md-5">
+		<p class="links">
+			<a href="http://www.hhs.gov/privacy.html" target="_blank"  style="color: #f3c50d">Privacy Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://www.healthit.gov/newsroom/web-site-disclaimers" target="_blank"  style="color: #f3c50d">Disclaimers</a>
+			<br>
+		</p>
+		<p>For Technical Support: <a href="{{properties.dttgroup}}" target="_blank"  style="color: #f3c50d">{{properties.dttgroup}}</a>
+			or <a href="mailto:"{{properties.dttemail}} target="_blank"  style="color: #f3c50d">{{properties.dttgroup}}</a>
+		</p>
+		<p>
+			Tested with Firefox 3.x and Chrome browsers.
+		</p>
+	</div>
+	<div class="footeritem col-sm-3 col-md-3">
+		<a href="http://www.healthit.gov" target="_blank">
+			<img class="footerImage" src="assets/img/onc_logo.png" alt="The ONC Logo" title="The ONC Logo">
+		</a>
+	</div>
+</div>
