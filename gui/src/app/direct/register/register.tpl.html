@@ -1,0 +1,99 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<h2><i class="fa fa-folder-open"></i>Register a Direct Email Address</h2>
+<p>
+    Enter your Direct (From) email address, this will be used to send a validation report to a normal email account. The validation reports are sent back to the email account for review by the user during testing. This panel allows the user to register their contact email account and link one or more Direct (From) account to it. Direct messages sent from a non-registered Direct (From) address will not be validated nor reported on.
+</p>
+
+<hr>
+
+<div class="form-group">
+    <h3>
+        Direct email address
+        <i class="fa fa-question-circle" tooltips tooltip-title="Direct messages will be accepted for validation only when the Direct (From) address is registered here." tooltip-side="right"></i>
+    </h3>
+    <div class="control-group" id="fields">
+        <div class="controls">
+            <form role="form" autocomplete="off">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="entry input-group">
+                            <input class="form-control" type="email" placeholder="Direct email address" ng-model="newDirect" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit" ng-click="createDirect(newDirect)">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <label class="control-label" for="directList" ng-show="userInfo.logged">
+        Direct email addresses for user {{userInfo.username}}
+    </label>
+
+    <div class="row">
+        <ul class="ds-btn">
+            <li ng-repeat="direct in directList">
+                <a class="btn btn-lg" ng-class="{true:'btn-primary', false:'btn-default'}[currentDirect==direct]" href="" ng-click="getContactForDirect(direct)">
+                    <i class="fa fa-envelope-o"></i>
+                    <span>{{direct}}</span>
+                </a>
+
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="form-group" ng-if="currentDirect">
+
+    <hr>
+
+    <button class="btn btn-danger pull-right" ng-click="deleteDirect(currentDirect)">
+        <i class="fa fa-trash"></i>
+        Remove Direct
+    </button>
+    <h3>
+        Manage Contact Email Addresses
+        <i class="fa fa-question-circle" tooltips tooltip-title="This is used to send feedback to the user. It is not part of the Direct specification. A Direct message sent to this tool results in a validation report sent to this Contact Email Address. Other parts of the user registration (below) are maintained for this user as identified by this Contact Email Adddress." tooltip-side="right"></i>
+    </h3>
+
+    <div class="control-group" id="fields">
+        <label class="control-label" for="field1">
+            Contact Email Address
+        </label>
+        <div class="controls">
+            <form role="form" autocomplete="off">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="entry entryDirect input-group">
+                            <input class="form-control" type="email" placeholder="Direct email address" ng-model="newContact" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit" ng-click="addContactToDirect(newContact)">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="input-group" ng-repeat="contact in contactList">
+                            <input class="form-control" type="email" ng-value="contact.result" disabled />
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit" ng-click="deleteContactForDirect(contact.result)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<h2><i class="fa fa-paperclip"></i> Message Status</h2>
+
+<p>
+    <strong>Select message type:</strong>
+    <toggle-switch ng-model="from" on-label="Incoming" off-label="Outgoing" knob-label=" "></toggle-switch>
+    <button class="btn btn-default pull-right" ng-click="getLogs()">Reload</button>
+</p>
+
+<div class="row">
+    <uib-accordion close-others="true" class="no-margin">
+        <uib-accordion-group is-open="status.open" ng-repeat="transaction in logList" ng-if="((transaction.type=='From' && from) || (transaction.type=='To' && !from)) && (transaction.logList.length > 0)">
+            <uib-accordion-heading>
+                <div class="clickable">
+                    {{transaction.type}}: {{transaction.directAddress}}
+                    <span class="badge small-margin-left">{{transaction.logList.length}}</span>
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </div>
+            </uib-accordion-heading>
+
+            <table class="table table-striped table-bordered">
+                <thead class="clickable not-selectable">
+                    <tr>
+                        <th ng-repeat="(i,th) in head" ng-class="selectedCls(i)" ng-click="changeSorting(i)">{{th}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="message in transaction.logList | orderBy:sort.column:sort.descending">
+                        <td>{{message.a_from}}</td>
+                        <td ng-if="transaction.type==='To'">{{message.b_messageID}}</td>
+                        <td ng-if="transaction.type==='From'"><a ui-sref="direct.report({message_id: message.b_messageID})">{{message.b_messageID}}</a>
+                        </td>
+                        <td>{{message.c_time | date:'MMM d, y h:mm:ss a Z'}}</td>
+                        <td class="{{message.d_status | logStatusFilter}}" ng-if="message.d_status==='MDN_RECEIVED'"><a href="" ng-click="goToMDN(message)">{{message.d_status}}</a></td>
+                        <td class="{{message.d_status | logStatusFilter}}" ng-if="message.d_status!=='MDN_RECEIVED'">{{message.d_status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-accordion-group>
+    </uib-accordion>
+</div>

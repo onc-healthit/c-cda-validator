@@ -1,0 +1,97 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<div flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''">
+
+    <h2><i class="fa fa-pie-chart"></i> Direct Message Validator</h2>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label class="control-label" for="cert">Message File&nbsp;
+                    <i class="fa fa-question-circle" tooltips tooltip-title="This is the message you want to validate" tooltip-side="right"></i>
+                </label>
+
+                <div flow-init="{target: apiUrl + 'upload'}" flow-files-submitted="$flow.upload()" flow-file-success="successMessage($message)">
+                    <div class="drop" flow-drop ng-class="dropClass" ng-hide="$flow.files.length">
+                        <span class="btn btn-default" flow-btn>Upload File</span>
+                        <b>OR</b>
+                        Drag And Drop your file here
+                    </div>
+
+                    <br/>
+
+                    <div>
+
+                        <div ng-repeat="file in $flow.files" class="transfer-box">
+                            {{file.relativePath}} ({{file.size}}bytes)
+                            <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}">
+                                    <span class="sr-only">{{file.progress()}}% Complete</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-default" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetMessage()" flow-btn>Change</button>
+                                <button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetMessage()">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-5">
+
+            <div class="form-group">
+                <label class="control-label" for="cert">Certificate File&nbsp;
+                    <i class="fa fa-question-circle" tooltips tooltip-title="Certificate containing the private key used to decrypt the message" tooltip-side="right"></i>
+                </label>
+
+                <div flow-init="{target: apiUrl + 'upload'}" flow-files-submitted="$flow.upload()" flow-file-success="successCert($message)">
+                    <div class="drop" flow-drop ng-class="dropClass" ng-hide="$flow.files.length">
+                        <span class="btn btn-default" flow-btn>Upload File</span>
+                        <b>OR</b>
+                        Drag And Drop your file here
+                    </div>
+
+                    <br/>
+
+                    <div>
+
+                        <div ng-repeat="file in $flow.files" class="transfer-box">
+                            {{file.relativePath}} ({{file.size}}bytes)
+                            <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}">
+                                    <span class="sr-only">{{file.progress()}}% Complete</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-default" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetCert()" flow-btn>Change</button>
+                                <button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetCert()">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="control-label" for="directTo">
+                    Password&nbsp;
+                    <i class="glyphicon glyphicon-question-sign" tooltips tooltip-title="This is the password for the certificate file. Leave it blank if there is no password" tooltip-side="right"></i>
+                </label>
+                <input type="password" placeholder="Password" id="certPassword" class="form-control" ng-model="validator.certPassword" name="certPassword">
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-lg btn-primary center-block" ng-click="validate()" ladda="laddaLoading">Validate</button>
+
+</div>

@@ -1,0 +1,219 @@
+.noSetting {
+    text-align: center;
+}
+.required {
+    color: red;
+}
+.formerror {
+    color: red;
+}
+.drag-over {
+    background: #5CB85C;
+    color: #fff;
+}
+.drop {
+    padding: 15px;
+    border: 2px #D6CDCD dashed;
+    border-radius: 5px;
+    line-height: 34px;
+}
+.no-margin .panel-body {
+    margin: 0;
+    padding: 0;
+}
+.no-margin .table {
+    margin-bottom: 0;
+}
+.panel-title a {
+    display: block;
+    padding: 10px 15px;
+    margin: -10px -15px;
+}
+.clickable {
+    cursor: pointer;
+}
+.not-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.tree {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #fbfbfb;
+    border: 1px solid #999;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)
+}
+.tree li {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 5px 0 5px;
+    position: relative
+}
+.tree li::before, .tree li::after {
+    content: '';
+    left: -20px;
+    position: absolute;
+    right: auto
+}
+.tree li::before {
+    border-left: 1px solid #999;
+    bottom: 50px;
+    height: 100%;
+    top: 0;
+    width: 1px
+}
+.tree li::after {
+    border-top: 1px solid #999;
+    height: 20px;
+    top: 25px;
+    width: 25px
+}
+.tree li span {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 3px 8px;
+    text-decoration: none
+}
+.tree li.parent_li>span {
+    cursor: pointer
+}
+.tree>ul>li::before, .tree>ul>li::after {
+    border: 0
+}
+.tree li:last-child::before {
+    height: 30px
+}
+.tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
+    background: #eee;
+    border: 1px solid #94a0b4;
+    color: #000
+}
+.tree-no-margin {
+    padding: 0px;
+    margin-bottom: 0px;
+}
+.report-success {
+    color: green;
+}
+.report-error {
+    color: red;
+}
+.detailed_title {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+/* tab color */
+
+.reportTab .nav-tabs>li>a {
+    background-color: #333333;
+    border-color: #777777;
+    color: #fff;
+}
+/* active tab color */
+
+.reportTab .nav-tabs>li.active>a, .reportTab .nav-tabs>li.active>a:hover, .reportTab .nav-tabs>li.active>a:focus {
+    color: #fff;
+    background-color: #666;
+    border: 1px solid #888888;
+}
+/* hover tab color */
+
+.reportTab .nav-tabs>li>a:hover {
+    border-color: #000000;
+    background-color: #111111;
+}
+table.fancy td {
+    cursor: pointer;
+}
+table.fancy tr.ccdaSelected {
+    color: white;
+    background-color: #428BCA;
+}
+.actualReport>a {
+    border-color: #454644;
+    background-color: #3D003D !important;
+}
+.actualReport>a:hover, .actualReport>a:focus {
+    border-color: #454644;
+    background-color: #501950 !important;
+}
+
+[ng-dropover] {
+  display: inline-block;
+}
+
+.ngdo-contents {
+  border-top: 4px solid #d14b2d;
+  // border-radius: 10px;
+  // height: 100px;
+  // width: 200px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 5px 6px #888888;
+  z-index: 1000;
+}
+div.arrowed:before, div.arrowed:after {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 10px solid transparent;
+}
+
+div.arrowed:before {
+    // border-bottom-color: #fbf4e1;
+    position: absolute;
+    top: -19px;
+    left: 20px;
+    z-index: 2;
+}
+
+div.arrowed:after {
+    border-bottom-color: #d14b2d;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    z-index: 1;
+}
+
+div.secbreak {
+    border-style: solid;
+    border-width: medium;
+    border-color: #00418d;
+}
+
+a.middle { vertical-align: middle; }
+
+p.cert_text {
+    font: bold ;
+    height: 90px;
+    margin: 0px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+// Overwritte findertree ul
+.arrowed .finder-tree ul {
+    width: 300px;
+    min-width: 100px;
+}
+
+.div_left_margin{
+	margin-left: 10px;
+	margin-right: 5px;
+}

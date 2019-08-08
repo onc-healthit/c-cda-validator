@@ -1,0 +1,61 @@
+<div class="navbar">
+    <div id="appheader">
+		<a href="https://www.healthit.gov/" title="HealthIT.gov" rel="external" class="site-logo">
+			<img src="assets/img/healthit.gov.logo.png" alt="HealthIT.gov">
+		</a>
+    </div>
+    <div class="navbar navbar-default" ng-controller="HeaderCtrl">
+        <ul class="nav">
+             <li>
+                <a href ui-sref="home">
+                    <div msg="" key="navbar.ttthome">ETT Home</div>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".home">Validator Home</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".ccdar1">C-CDA R1.1 Validator</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".ccdar2">C-CDA R2.1 Validator</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".xdm">XDM Validator</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".xdr">XDR Validator</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".direct">Direct Message Validator</a>
+            </li>
+            <li ui-sref-active="active" class="pull-right">
+                <a ui-sref=".help">
+                    <div msg="" key="navbar.help"><i class="fa fa-question-circle"></i> Help</div>
+                </a>
+            </li>
+            <li ui-sref-active="active" class="pull-right">
+                <a ui-sref=".documents">
+                    <div msg="" key="navbar.documents"><i class="fa fa-book"></i> Documents</div>
+                </a>
+            </li>
+            <li class="pull-right" ng-show="!userInfo.logged">
+                <a href="">
+                    <div key="navbar.login" ng-click="loginPopup()">Login/Sign up</div>
+                </a>
+            </li>
+            <li uib-dropdown class="pull-right" ng-show="userInfo.logged">
+                <a href="#" uib-dropdown-toggle>Welcome {{userInfo.username}}<b class="caret"></b></a>
+                <ul class="uib-dropdown-menu">
+                    <li><a ui-sref=".accountInfo">Account Info</a>
+                    </li>
+                    <li><a ui-sref=".changePassword">Change Password</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="" ng-click="logout()">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

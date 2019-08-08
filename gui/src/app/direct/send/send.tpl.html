@@ -1,0 +1,238 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<div flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''">
+
+    <div class="row">
+        <h2><i class="fa fa-envelope"></i> Send a Direct Message</h2>
+        <p>
+            Send a Direct message from this tool to a HISP of your choosing
+            <br>
+            <i class="fa fa-star required"></i>: Required
+        </p>
+        <hr>
+
+        <div class="col-xs-7" style="border-right: 1px solid #ccc;">
+
+            <form name="sendDirectForm" novalidate>
+
+                <div class="form-group">
+                    <label class="control-label" for="directFrom">
+                        <i class="fa fa-star required"></i> Direct From Address&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The Direct From Address from where the message will be sent" tooltip-side="right"></i>
+
+                    </label>
+                    <div class="input-group">
+                        <input type="text" id="directFrom" class="form-control " placeholder="Direct From Address" ng-model="message.fromAddress" name="from" required>
+                        <span class="input-group-addon">
+                        {{'@' + properties.domainName}}
+                    </span>
+                    </div>
+                    <div class="formerror" ng-show="sendDirectForm.from.$dirty && sendDirectForm.from.$invalid">
+                        <small class="formerror" ng-show="sendDirectForm.from.$error.required">
+                        Direct From Address is required
+                    </small>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="control-label" for="directTo">
+                        <i class="fa fa-star required"></i> Direct To Address&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The Direct To Address where the message will be sent. Must be an email" tooltip-side="right"></i>
+                    </label>
+                    <input type="email" placeholder="Direct To Address" id="directTo" class="form-control" ng-model="message.toAddress" name="to" uib-typeahead="directAd for directAd in directList | filter:$viewValue | limitTo:8" required>
+                    <div class="formerror" ng-show="sendDirectForm.to.$dirty && sendDirectForm.to.$invalid">
+                        <small class="formerror" ng-show="sendDirectForm.to.$error.required">
+                        Direct To Address is required
+                    </small>
+                        <small class="error" ng-show="sendDirectForm.to.$error.email">
+                        That is not a valid email. Please input a valid email.
+                    </small>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="control-label">
+                        Choose document to be sent as the message content&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The CDA sample which will be attached to the message" tooltip-side="right"></i>
+                    </label>
+                    <div class="input-group">
+                        <ui-select ng-model="sample.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Select attachment to be sent...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in settings.cdaSamples | filter: $select.search">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                <!-- <small ng-bind-html="item.email | highlight: $select.search"></small> -->
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <span class="input-group-btn">
+                        <button ng-click="sample.selected = undefined" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        </span>
+
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="control-label" for="wrapped">Message format&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The format of the message, if wrapped is selected, the header is wrapped to include the 'To', 'From', 'CC', 'BCC', and 'Subject' lines. See RFC 822 for details." tooltip-side="right"></i>
+                    </label>
+                    <div class="input-group">
+                        <div class="btn-group">
+                            <a class="btn btn-default" ng-class="{true: 'active'}[isWrapped]" ng-click="toggleWrapped(true)">Wrapped</a>
+                            <a class="btn btn-default" ng-class="{false: 'active'}[isWrapped]" ng-click="toggleWrapped(false)">Unwrapped</a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="control-label" for="cert">Signing Certificate&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The private certificate which will be used to sign the message" tooltip-side="right"></i>
+                    </label>
+                    <div class="input-group">
+                        <div class="btn-group">
+                            <a class="btn btn-default" ng-class="{'GOOD': 'active btn-success'}[certType]" ng-click="toggleCertType('GOOD')">GOOD_CERT</a>
+                            <a class="btn btn-default" ng-class="{'INVALID': 'active btn-danger'}[certType]" ng-click="toggleCertType('INVALID')">INVALID_CERT</a>
+                            <a class="btn btn-default" ng-class="{'EXPIRED': 'active btn-danger'}[certType]" ng-click="toggleCertType('EXPIRED')">EXPIRED_CERT</a>
+                            <a class="btn btn-default" ng-class="{'DIFF': 'active btn-danger'}[certType]" ng-click="toggleCertType('DIFF')">DIFFERENT_TRUST_ANCHOR</a>
+                            <a class="btn btn-default" ng-class="{'AIA': 'active btn-danger'}[certType]" ng-click="toggleCertType('AIA')" tooltips tooltip-title="Certificate with no Authority Information Access (AIA)" tooltip-side="bottom">BAD_AIA</a>
+                        </div>
+                    </div>
+                    <br />
+                    <label class="control-label" for="cert">or select message with invalid digest (message which had been altered)&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The signature (digest) will not match the content of the message" tooltip-side="right"></i>
+                    </label>
+                    <div class="input-group">
+                        <div class="btn-group">
+                            <a class="btn btn-default" ng-class="{'true': 'active btn-danger'}[invalidDigest]" ng-click="toggleCertType('INVALID_DIGEST')">INVALID_DIGEST</a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group" data-ng-init="digestAlgo = 'sha1'">
+                    <label class="control-label" for="algo">Signing Algorithm&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="This is the algorithm used to sign the message." tooltip-side="right"></i>
+                    </label>
+                    <div class="input-group">
+                        <div class="btn-group">
+                            <a class="btn btn-default" ng-class="{true: 'active'}[digestAlgo === 'sha1']" ng-click="digestAlgo = 'sha1'">SHA-1</a>
+                            <a class="btn btn-default" ng-class="{true: 'active'}[digestAlgo === 'sha256']" ng-click="digestAlgo = 'sha256'">SHA-256</a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="control-label" for="cert">Encyption Certificate&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="Encryption certificate (optional) if not provided by DNS or LDAP lookup" tooltip-side="right"></i>
+                    </label>
+
+                    <div flow-init="{target: apiUrl + 'upload'}" flow-files-submitted="$flow.upload()" flow-file-success="success($message)">
+                        <div class="drop" flow-drop ng-class="dropClass" ng-hide="$flow.files.length">
+                            <span class="btn btn-default" flow-btn>Upload File</span>
+                            <b>OR</b> Drag And Drop your file here
+                        </div>
+
+                        <br/>
+
+                        <div>
+
+                            <div ng-repeat="file in $flow.files" class="transfer-box">
+                                {{file.relativePath}} ({{file.size}}bytes)
+                                <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}">
+                                        <span class="sr-only">{{file.progress()}}% Complete</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-default" ng-show="$flow.files.length" ng-click="$flow.cancel() || reset()" flow-btn>Change</button>
+                                    <button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel() || reset()">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+
+        <div class="col-xs-5">
+
+            <div class="form-group">
+                <label class="control-label" for="subject">
+                    Message Subject or Test Session Name&nbsp;
+                    <i class="fa fa-question-circle" tooltips tooltip-title="Message Subject or Test Session Name. This field is optional." tooltip-side="right"></i>
+                </label>
+                <input type="text" placeholder="Message Subject  or Test Session Name" id="subject" class="form-control" ng-model="message.subject" name="subject">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="textmsg">
+                    Text Message&nbsp;
+                    <i class="fa fa-question-circle" tooltips tooltip-title="Text attachment of the Direct message" tooltip-side="right"></i>
+                </label>
+                <textarea type="text" placeholder="Text Message" id="textmsg" class="form-control" ng-model="message.textMessage" name="textmsg"></textarea>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label class="control-label" for="ownCcda">Upload your own C-CDA&nbsp;
+                    <i class="fa fa-question-circle" tooltips tooltip-title="Upload your own C-CDA to attach the message. Only one C-CDA document will be attached either your own or the one you selected from the tool." tooltip-side="right"></i>
+                </label>
+
+                <div flow-init="{target: apiUrl + 'upload'}" flow-files-submitted="$flow.upload()" flow-file-success="successCcda($message)">
+                    <div class="drop" flow-drop ng-class="dropClass" ng-hide="$flow.files.length">
+                        <span class="btn btn-default" flow-btn>Upload File</span>
+                        <b>OR</b> Drag And Drop your file here
+                    </div>
+
+                    <br/>
+
+                    <div>
+
+                        <div ng-repeat="file in $flow.files" class="transfer-box">
+                            {{file.relativePath}} ({{file.size}}bytes)
+                            <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}">
+                                    <span class="sr-only">{{file.progress()}}% Complete</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-default" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetCcda()" flow-btn>Change</button>
+                                <button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetCcda()">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+
+        <button type="submit" class="btn btn-lg btn-primary center-block" ng-disabled="sendDirectForm.$invalid" ng-click="send()" ladda="laddaLoading" data-style="expand-left">
+            Send
+        </button>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div ng-include="'surveillance/surveillanceCriteriaHeader.tpl.html'" ng-cloak></div>
+
+<div class="container">
+
+    <!-- If javascript is disabled -->
+    <noscript>
+        <p class="bg-danger" style="margin-top: 30%;padding: 10px; font-size: large;">
+            <i class="fa fa-times-circle"></i>
+            Error 0x0001: You must have JavaScript enabled to use this app.
+        </p>
+    </noscript>
+
+    <!-- Check if the settings.json file is present -->
+    <div ng-cloak>
+        <div ng-show="error">
+            <uib-alert type="danger">
+                <h3 class="noSetting">
+                    <i class="fa fa-times-circle"></i>
+                    Error 0x0002: Couldn't find settings.json
+                </h3>
+            </uib-alert>
+        </div>
+    </div>
+
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view="surveillance" ng-cloak></div>
+
+</div>
+
+<div ng-include="'templates/footer.tpl.html'"></div>

@@ -1,0 +1,54 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<div flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''">
+
+    <h2><i class="fa fa-pie-chart"></i> XDM Validator</h2>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label class="control-label" for="cert">XDM File&nbsp;
+                    <i class="fa fa-question-circle" tooltips tooltip-title="This is the C-CDA you want to validate" tooltip-side="right"></i>
+                </label>
+
+                <div flow-init="{target: apiUrl + 'upload'}" flow-files-submitted="$flow.upload()" flow-file-success="successMessage($message)">
+                    <div class="drop" flow-drop ng-class="dropClass" ng-hide="$flow.files.length">
+                        <span class="btn btn-default" flow-btn>Upload File</span>
+                        <b>OR</b> Drag And Drop your file here
+                    </div>
+
+                    <br/>
+
+                    <div>
+
+                        <div ng-repeat="file in $flow.files" class="transfer-box">
+                            {{file.relativePath}} ({{file.size}}bytes)
+                            <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}">
+                                    <span class="sr-only">{{file.progress()}}% Complete</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-default" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetMessage()" flow-btn>Change</button>
+                                <button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetMessage()">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-lg btn-primary center-block" ng-click="validate()" ladda="laddaLoading" style="margin-bottom: 10px;">Validate</button>
+
+    <div ng-if="xdmResult">
+        <hr>
+        <pre>{{xdmResult.report}}</pre>
+    </div>
+
+</div>

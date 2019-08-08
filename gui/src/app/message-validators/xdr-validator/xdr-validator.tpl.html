@@ -1,0 +1,153 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<h2><i class="fa fa-pie-chart"></i> XDR Validator</h2>
+
+<uib-tabset>
+    <uib-tab heading="XDR Send" class="tab_saml clickable not-selectable">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <label class="control-label" for="patientId">
+                        Patient ID&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="Indicate the Patient ID" tooltip-side="right"></i>
+                    </label>
+                    <input type="text" placeholder="Patient ID" id="patientId" class="form-control" ng-model="properties.patientId" name="patientId">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">
+                        Select Test Data Set&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="The CDA sample which will be attached to the message" tooltip-side="right"></i>
+                    </label>
+                    <div class="input-group">
+                        <ui-select ng-model="sample.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Select attachment to be sent...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in xdrSamples | filter: $select.search">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                <!-- <small ng-bind-html="item.email | highlight: $select.search"></small> -->
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <span class="input-group-btn">
+						<button ng-click="sample.selected = undefined" class="btn btn-default">
+							<span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="patientId">
+                        SAML&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="Security Assertion Markup Language (SAML) choose ON or OFF" tooltip-side="right"></i>
+                    </label>
+                    <toggle-switch ng-model="properties.saml" on-label="ON" off-label="OFF" knob-label=" "></toggle-switch>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="endpoint">
+                        Endpoint&nbsp;
+                        <i class="fa fa-question-circle" tooltips tooltip-title="Indicate the Endpoint where the XDR will be sent" tooltip-side="right"></i>
+                    </label>
+                    <input type="text" placeholder="Endpoint" id="endpoint" class="form-control" ng-model="properties.targetEndpointTLS" name="endpoint">
+                </div>
+
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-primary" ng-click="sendXdr()" ladda="laddaLoading" style="margin-bottom: 10px;">Send</button>
+        <button type="submit" class="btn btn-lg btn-primary" ng-click="resetSend()" style="margin-bottom: 10px;"><span class="glyphicon glyphicon-trash"></span>&nbsp;Reset</button>
+
+
+        <!-- Results -->
+
+        <div class="row" ng-if="send.results">
+            <div class="alert alert-success" ng-if="send.status === 'success'">
+                Success
+            </div>
+            <div class="alert alert-danger" ng-if="send.status === 'error'">
+                Error
+            </div>
+            <div class="col-md-12" ng-if="send.status !== 'na' && !send.expectedMDN">
+                <uib-tabset>
+                    <uib-tab heading="Request" class="clickable not-selectable">
+                        <pre><code class="language-markup" prism>{{send.results.content.value.request}}</code></pre>
+                    </uib-tab>
+                    <uib-tab heading="Response" class="tabbable clickable not-selectable">
+                        <pre><code class="language-markup" prism>{{send.results.content.value.response}}</code></pre>
+                    </uib-tab>
+                    <uib-tab heading="C-CDA Validation" class="tabbable clickable not-selectable" ng-if="send.results.content.value.ccdaReport">
+                        <ccda-r2-report data="send.results.content.value.ccdaReport"></ccda-r2-report>
+                    </uib-tab>
+                </uib-tabset>
+
+            </div>
+        </div>
+
+    </uib-tab>
+
+    <uib-tab heading="XDR Receive" class="tab_saml clickable not-selectable">
+
+        <div class="row">
+            <div class="col-md-10">
+                <!-- <div class="form-group" ng-if="receive.status === 'na'">
+					<label class="control-label" for="directFrom">
+						Direct From Address&nbsp;
+						<i class="fa fa-question-circle" tooltips tooltip-title="Indicate the Direct from Address of Incoming XDR" tooltip-side="right"></i>
+					</label>
+					<input type="text" placeholder="Direct From Address" id="directFrom" class="form-control" ng-model="properties.direct_from" name="directFrom">
+				</div> -->
+
+                <div ng-if="receive.status !== 'na'">
+                    <p>
+                        <button class="btn btn-default" clipboard text="receive.endpoint" on-copied="displayGrowl('Data copied')" title="Copy to clipboard">
+                            <i class="fa fa-clipboard"></i>
+                        </button>
+                        <strong>Endpoint:</strong> {{receive.endpoint}}
+                    </p>
+                    <p>
+                        <button class="btn btn-default" clipboard text="receive.endpointTLS" on-copied="displayGrowl('Data copied')" title="Copy to clipboard">
+                            <i class="fa fa-clipboard"></i>
+                        </button>
+                        <strong>Endpoint TLS:</strong> {{receive.endpointTLS}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-primary" ng-click="configure()" ladda="laddaLoading" style="margin-bottom: 10px;" ng-if="receive.status === 'na'">Create your endpoint</button>
+        <button type="submit" class="btn btn-lg btn-primary" ng-click="checkXdrStatus()" ladda="laddaLoading" style="margin-bottom: 10px;" ng-if="receive.status !== 'na'">Check For Incoming XDR</button>
+
+        <button type="submit" class="btn btn-lg btn-primary" ng-click="resetReceive()" style="margin-bottom: 10px;"><span class="glyphicon glyphicon-trash"></span>&nbsp;Reset</button>
+
+        <div class="alert" ng-if="statusMessage">
+            {{statusMessage}}
+        </div>
+
+        <uib-tabset ng-if="receive.results">
+            <div class="alert alert-success" ng-if="receive.status === 'success'">
+                Success
+                <span class="pull-right">{{receive.results.timestamp | date:'medium'}}</span>
+            </div>
+            <div class="alert alert-danger" ng-if="receive.status === 'error'">
+                Error
+                <span class="pull-right">{{receive.results.timestamp | date:'medium'}}</span>
+            </div>
+            <uib-tab heading="Request" class="clickable not-selectable">
+                <pre><code class="language-markup" prism>{{receive.results.request}}</code></pre>
+            </uib-tab>
+            <uib-tab heading="Response" class="tabbable clickable not-selectable">
+                <pre><code class="language-markup" prism>{{receive.results.response}}</code></pre>
+            </uib-tab>
+            <uib-tab heading="SAML" class="tabbable clickable not-selectable" ng-if="receive.results.samlReport">
+                <pre><code class="language-markup" prism>{{receive.results.samlReport}}</code></pre>
+            </uib-tab>
+        </uib-tabset>
+
+    </uib-tab>
+</uib-tabset>

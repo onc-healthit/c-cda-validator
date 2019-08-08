@@ -1,0 +1,90 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<h3><i class="fa fa-file-text-o"></i> Validation report of message {{message_id}}</h3>
+
+<div class="reportTab">
+	<uib-tabset>
+		<uib-tab heading="Validation Report" class="actualReport clickable not-selectable">
+			<div class="row">
+				<div class="col-xs-7">
+					<div class="tree well">
+						<h4>Validation report summary</h4>
+						<direct-report data="tree_data" select-node="changeDetail"></direct-report>
+					</div>
+				</div>
+				<div class="col-xs-5">
+					<div class="tree well">
+						<h4>Selected part</h4>
+						<p>
+							Content-Type: {{selectedPart.contentType}}
+						</p>
+						<p>
+							Content-Disposition: {{selectedPart.contentDisposition}}
+						</p>
+						<p>
+							Content-Transfer-Encoding: {{selectedPart.contentTransferEncoding}}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Panel in case of global alert -->
+			<div class="alert alert-danger" ng-repeat="globalError in globalErrors">
+				<i class="fa fa-exclamation-triangle"></i>
+				<span>{{globalError.found}}</span>
+			</div>
+
+			<div class="tree well tree-no-margin" ng-show="selectedPart">
+				<div>
+					<h4 class="detailed_title">Detailed report {{selectedPart.contentType | contentTypeFilter}}</h4>
+					<table class="table table-striped table-bordered" style="margin-bottom:0px">
+						<thead class="clickable not-selectable">
+							<tr>
+								<th ng-repeat="th in detailedHeader">{{th}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="detail in selectedPart.details">
+								<td>{{detail.name}}</td>
+								<td class="{{detail.status | detailStatusFilter}}">{{detail.status}}</td>
+								<td>{{detail.dts}}</td>
+								<td>{{detail.found}}</td>
+								<td>{{detail.expected}}</td>
+								<td>
+									<p ng-repeat="rfc in detail.rfc track by $index"><a href="{{rfc.link}}" target="_blank">{{rfc.name}}</a>
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</uib-tab>
+		<uib-tab heading="{{ccdaValidationType[$index]}}" class="actualReport tabbable clickable not-selectable" ng-repeat="ccdaResult in ccdaReports">
+			<div ng-if="ccdaValidationType[$index] === 'CCDA Validation R1.1'" style="margin-top:10px;">
+				<ccda-r1-report data="ccdaResult.ccdaReport"></ccda-r1-report>
+			</div>
+			<div ng-if="ccdaValidationType[$index] === 'CCDA Validation R2.1'" style="margin-top:10px;">
+				<ccda-r2-report data="ccdaResult.ccdaReport"></ccda-r2-report>
+			</div>
+			<div ng-if="ccdaValidationType[$index] === 'CCDA Validation R2.1'" style="margin-top:10px;">
+				<ccda-r2-report data="ccdaResult.ccdaReport"></ccda-r2-report>
+			</div>
+			<div ng-if="ccdaValidationType[$index] === 'XDM Validation'" style="margin-top:10px;">
+				<h3>Validation of {{ccdaResult.filename.substring(4)}}</h3>
+				<pre>{{ccdaResult.ccdaReport.report}}</pre>
+			</div>
+		</uib-tab>
+		<uib-tab ng-repeat="content in partsRawContent" heading="{{content.filename}}" class="tabbable clickable not-selectable">
+			<a href="{{apiUrl}}validationReport/download/{{content.downloadLink}}" class="btn btn-inverse btn-lg pull-right">
+				<i class="fa fa-cloud-download"></i> Download
+			</a>
+			<pre>{{content.rawContent}}</pre>
+		</uib-tab>
+	</uib-tabset>
+</div>

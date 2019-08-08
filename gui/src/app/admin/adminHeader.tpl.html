@@ -1,0 +1,28 @@
+<div class="navbar">
+    <div class="brand" id="appheader">
+        <a style="display: inline-block; text-shadow:none" href ui-sref="home">
+            <div msg="" id="apptitle" key="title">ETT Administration</div>
+            <div msg="" key="subtitle" id="appsubtitle">Admin</div>
+        </a>
+        <a href ui-sref="home" style="display: inline-block; text-shadow:none" class="pull-right">
+            <div msg="" key="subtitle" id="appsubtitle">
+                ETT Home <i class="fa fa-chevron-right"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="navbar-inner" ng-controller="HeaderCtrl">
+        <ul class="nav">
+            <li ui-sref-active="active">
+                <a ui-sref=".logs">
+                    <div msg="" key="navbar.logs">Logs</div>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref=".settings">
+                    <div msg="" key="navbar.settings">Tool Settings</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

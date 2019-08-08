@@ -1,0 +1,86 @@
+<div ng-if="paramsObj">
+<div class="row">
+	<a href ui-sref={{backTo}}>
+		<span>Back to &#167; {{paramsObj.prevPage}}</span>
+	</a>
+</div>
+</div>
+<div flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''">
+ <h2><i class="fa fa-pie-chart"></i> C-CDA R1.1 Validator</h2>
+
+ <div class="row">
+     <div class="col-sm-12">
+       <uib-accordion>
+       <div aria-multiselectable="true" class="panel-group" role="tablist">
+         	<uib-accordion-group heading="R1.1 Validator" is-open="true">
+			 <div class="panel-heading" role="tab">
+    		 </div>
+
+		<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label class="control-label">Step 1: Select the C-CDA R1.1 Conformance from the list:&nbsp;
+				</label>
+					<ui-select ng-model="selectedItem.selected" theme="bootstrap" on-select="changed(selectedItem.selected)">
+						<ui-select-match placeholder="Select validation criteria...">{{$select.selected.desc}}</ui-select-match>
+						<ui-select-choices repeat="item in ccdaTypes | filter: $select.search" >
+							<span ng-bind-html="item.desc | highlight: $select.search"></span>
+						</ui-select-choices>
+					</ui-select>
+			</div>
+			</div>
+		 </div>
+
+
+		<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+					<label class="control-label" for="cert">Step 2: Upload your C-CDA File to Validate:&nbsp;
+					</label>
+
+					<div flow-init="{target: apiUrl + 'upload'}" flow-files-submitted="$flow.upload()" flow-file-success="successMessage($message)">
+						<div class="drop" flow-drop ng-class="dropClass" ng-hide="$flow.files.length">
+							<span class="btn btn-default" flow-btn>Choose File</span>
+							<b>OR</b> Drag And Drop your file here
+						</div>
+						<br/>
+							<div ng-repeat="file in $flow.files" class="transfer-box">
+								<p style="display: inline; width: 150px; word-break: break-all; word-wrap: break-word;">
+									{{file.relativePath}} ({{file.size}}bytes)
+								</p>
+								<div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}">
+										<span class="sr-only">{{file.progress()}}% Complete</span>
+									</div>
+								</div>
+								<div>
+									<button class="btn btn-default" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetMessage()" flow-btn>Change</button>
+									<button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel() || resetMessage()">Remove</button>
+								</div>
+							</div>
+					</div>
+				 </div>
+			</div>
+		</div>
+
+
+			<div class="row">
+				<div class="col-sm-12">
+						<div class="form-group">
+								<label class="control-label" for="cert">Step 3: Click to Validate your Document:&nbsp;
+								</label>
+							<div>
+								<button type="submit" class="btn btn-lg btn-primary"  ng-click="validate()" ladda="laddaLoading" style="margin-bottom: 10px;">Validate</button>
+							</div>
+						</div>
+				</div>
+			</div>
+</div>
+</div>
+</div>
+
+    <div id="ccdaValdReport" ng-if="ccdaResult">
+        <hr>
+        <ccda-r1-report data="ccdaResult"></ccda-r1-report>
+    </div>
+</div>

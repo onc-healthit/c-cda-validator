@@ -1,0 +1,54 @@
+<div class="search-title">
+	<i class="fa fa-search"></i> Search in logs
+</div>
+
+<div class="row">
+	<!-- Log files list -->
+	<div class="col-md-2" style="padding-left:20px; margin-top:100px;">
+		<div class="panel panel-default">
+			<div class="panel-heading">Log Files</div>
+			<div class="panel-body" style="background-color: #EBFFCE;">
+				<div ng-repeat="file in allLogFiles track by $index">
+					<a href="" ng-click="changeLogFile(file)" ng-class="{'selected_file': selectedFile === file}">{{file}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-10">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label" for="level">
+						Log level&nbsp;
+					</label>
+					<div class="input-group">
+						<div class="btn-group">
+							<a class="btn btn-default" ng-class="{active: shouldBeActive('ALL')}" ng-click="toggleLevel('ALL')">All</a>
+							<a class="btn btn-info" ng-class="{active: shouldBeActive('INFO')}" ng-click="toggleLevel('INFO')">INFO</a>
+							<a class="btn btn-warning" ng-class="{active: shouldBeActive('WARNING')}" ng-click="toggleLevel('WARNING')">WARNING</a>
+							<a class="btn btn-danger" ng-class="{active: shouldBeActive('ERROR')}" ng-click="toggleLevel('ERROR')">ERROR</a>
+							<a class="btn btn-primary" ng-class="{active: shouldBeActive('DEBUG')}" ng-click="toggleLevel('DEBUG')">DEBUG</a>
+						</div>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" ng-model="noStacktrace"> No Stacktrace
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label" for="search">
+						Search&nbsp;
+					</label>
+					<input type="text" id="search" class="form-control " placeholder="Search" ng-model="search" name="search">
+				</div>
+			</div>
+		</div>
+
+		<span class="log_filename">{{selectedFile}}</span>
+		<pre id="logView" ng-bind-html="logs.file"></pre>
+	</div>
+</div>
