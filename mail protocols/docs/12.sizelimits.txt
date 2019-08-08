@@ -1,0 +1,122 @@
+4.5.3.1 Size limits and minimums
+
+   There are several objects that have required minimum/maximum sizes.
+   Every implementation MUST be able to receive objects of at least
+   these sizes.  Objects larger than these sizes SHOULD be avoided when
+   possible.  However, some Internet mail constructs such as encoded
+   X.400 addresses [16] will often require larger objects: clients MAY
+   attempt to transmit these, but MUST be prepared for a server to
+   reject them if they cannot be handled by it.  To the maximum extent
+   possible, implementation techniques which impose no limits on the
+   length of these objects should be used.
+
+   local-part
+      The maximum total length of a user name or other local-part is 64
+      characters.
+
+
+
+
+Klensin                     Standards Track                    [Page 54]
+
+RFC 2821             Simple Mail Transfer Protocol            April 2001
+
+
+   domain
+      The maximum total length of a domain name or number is 255
+      characters.
+
+   path
+      The maximum total length of a reverse-path or forward-path is 256
+      characters (including the punctuation and element separators).
+
+   command line
+      The maximum total length of a command line including the command
+      word and the <CRLF> is 512 characters.  SMTP extensions may be
+      used to increase this limit.
+
+   reply line
+      The maximum total length of a reply line including the reply code
+      and the <CRLF> is 512 characters.  More information may be
+      conveyed through multiple-line replies.
+
+   text line
+      The maximum total length of a text line including the <CRLF> is
+      1000 characters (not counting the leading dot duplicated for
+      transparency).  This number may be increased by the use of SMTP
+      Service Extensions.
+
+   message content
+      The maximum total length of a message content (including any
+      message headers as well as the message body) MUST BE at least 64K
+      octets.  Since the introduction of Internet standards for
+      multimedia mail [12], message lengths on the Internet have grown
+      dramatically, and message size restrictions should be avoided if
+      at all possible.  SMTP server systems that must impose
+      restrictions SHOULD implement the "SIZE" service extension [18],
+      and SMTP client systems that will send large messages SHOULD
+      utilize it when possible.
+
+   recipients buffer
+      The minimum total number of recipients that must be buffered is
+      100 recipients.  Rejection of messages (for excessive recipients)
+      with fewer than 100 RCPT commands is a violation of this
+      specification.  The general principle that relaying SMTP servers
+      MUST NOT, and delivery SMTP servers SHOULD NOT, perform validation
+      tests on message headers suggests that rejecting a message based
+      on the total number of recipients shown in header fields is to be
+      discouraged.  A server which imposes a limit on the number of
+      recipients MUST behave in an orderly fashion,  such as to reject
+      additional addresses over its limit rather than silently
+      discarding addresses previously accepted.  A client that needs to
+
+
+
+
+Klensin                     Standards Track                    [Page 55]
+
+RFC 2821             Simple Mail Transfer Protocol            April 2001
+
+
+      deliver a message containing over 100 RCPT commands SHOULD be
+      prepared to transmit in 100-recipient "chunks" if the server
+      declines to accept more than 100 recipients in a single message.
+
+   Errors due to exceeding these limits may be reported by using the
+   reply codes.  Some examples of reply codes are:
+
+      500 Line too long.
+   or
+      501 Path too long
+   or
+      452 Too many recipients  (see below)
+   or
+      552 Too much mail data.
+
+   RFC 821 [30] incorrectly listed the error where an SMTP server
+   exhausts its implementation limit on the number of RCPT commands
+   ("too many recipients") as having reply code 552.  The correct reply
+   code for this condition is 452.  Clients SHOULD treat a 552 code in
+   this case as a temporary, rather than permanent, failure so the logic
+   below works.
+
+   When a conforming SMTP server encounters this condition, it has at
+   least 100 successful RCPT commands in its recipients buffer.  If the
+   server is able to accept the message, then at least these 100
+   addresses will be removed from the SMTP client's queue.  When the
+   client attempts retransmission of those addresses which received 452
+   responses, at least 100 of these will be able to fit in the SMTP
+   server's recipients buffer.  Each retransmission attempt which is
+   able to deliver anything will be able to dispose of at least 100 of
+   these recipients.
+
+   If an SMTP server has an implementation limit on the number of RCPT
+   commands and this limit is exhausted, it MUST use a response code of
+   452 (but the client SHOULD also be prepared for a 552, as noted
+   above).  If the server has a configured site-policy limitation on the
+   number of RCPT commands, it MAY instead use a 5XX response code.
+   This would be most appropriate if the policy limitation was intended
+   to apply if the total recipient count for a particular message body
+   were enforced even if that message body was sent in multiple mail
+   transactions.
+

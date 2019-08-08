@@ -1,0 +1,55 @@
+4.5.3.2 Timeouts
+
+   An SMTP client MUST provide a timeout mechanism.  It MUST use per-
+   command timeouts rather than somehow trying to time the entire mail
+   transaction.  Timeouts SHOULD be easily reconfigurable, preferably
+   without recompiling the SMTP code.  To implement this, a timer is set
+
+
+
+Klensin                     Standards Track                    [Page 56]
+
+RFC 2821             Simple Mail Transfer Protocol            April 2001
+
+
+   for each SMTP command and for each buffer of the data transfer.  The
+   latter means that the overall timeout is inherently proportional to
+   the size of the message.
+
+   Based on extensive experience with busy mail-relay hosts, the minimum
+   per-command timeout values SHOULD be as follows:
+
+   Initial 220 Message: 5 minutes
+      An SMTP client process needs to distinguish between a failed TCP
+      connection and a delay in receiving the initial 220 greeting
+      message.  Many SMTP servers accept a TCP connection but delay
+      delivery of the 220 message until their system load permits more
+      mail to be processed.
+
+   MAIL Command: 5 minutes
+
+   RCPT Command: 5 minutes
+      A longer timeout is required if processing of mailing lists and
+      aliases is not deferred until after the message was accepted.
+
+   DATA Initiation: 2 minutes
+      This is while awaiting the "354 Start Input" reply to a DATA
+      command.
+
+   Data Block: 3 minutes
+      This is while awaiting the completion of each TCP SEND call
+      transmitting a chunk of data.
+
+   DATA Termination: 10 minutes.
+      This is while awaiting the "250 OK" reply.  When the receiver gets
+      the final period terminating the message data, it typically
+      performs processing to deliver the message to a user mailbox.  A
+      spurious timeout at this point would be very wasteful and would
+      typically result in delivery of multiple copies of the message,
+      since it has been successfully sent and the server has accepted
+      responsibility for delivery.  See section 6.1 for additional
+      discussion.
+
+   An SMTP server SHOULD have a timeout of at least 5 minutes while it
+   is awaiting the next command from the sender.
+

@@ -1,0 +1,29 @@
+
+10	Send invalid data as part of the DATA command
+/* 2.3.6 Conforming implementations MUST NOT recognize or generate any other
+   character or character sequence as a line terminator.  Limits MAY be
+   imposed on line lengths by servers (see section 4.5.3).
+*/
+
+
+
+11  Initiate SMTP Session using invalid commands to ensure the SUT does not behave incorrectly.
+/*
+3.3 If a RCPT command appears without a
+   previous MAIL command, the server MUST return a 503 "Bad sequence of
+   commands" response.
+*/
+
+
+
+12  Test for Size limits of various SMTP commands
+
+/* no */
+
+
+14  Test for timeouts of various SMTP commands
+
+17. Invalid STARTTLS
+
+23. Invalid Digest MD5
+
