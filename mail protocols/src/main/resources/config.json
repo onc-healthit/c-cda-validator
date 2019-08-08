@@ -1,0 +1,95 @@
+{
+    "tests": [
+        {
+            "name": "SMTP test 1-8",
+            "id": 1,
+            "desc": "Tests the ability of SUT to send an email using SMTP protocol. SUT sends email to wellformed1@hostname",
+            "sutRole": "sender",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 9",
+            "id": 9,
+            "desc": "Tests the ability of SUT to receive an email. TTT sends an email to Test Address 1(SUT) from wellformed3@hostname. The test lab should verify the receipt of email with subject 'Test Case 9'",
+            "longDesc": "The objective of this test sequence is to determine if the System Under Test (SUT), acting as the receiver, accepts and validates the commands sent from the Health Information System Program (HISP) or Edge Testing Tool, acting as the sender, and successfully establishes an endpoint-to-endpoint connection between the two.\\nThe details for conformance testing flow are as follows: The HISP or Edge Testing Tool attempts to send a valid Simple Mail Transfer Protocol (SMTP) command to the SUT to initiate a session. This is conducted in accordance with RFC 2811, Section 4.1.1 (ensure support for HELO/EHLO, MAIL FROM, RCPT TO, DATA, RESET, QUIT, NOOP, VRFY). This is a required test.\\nThis test retains compliancy with the secure health data transport messaging formats, processing requirements, and communication standards for Direct Edge message exchanges. See Section 1.2.1 and 1.2.2 of the ‘Implementation Guide for Direct Edge Protocols’ document.",
+            "sutHisp": "true",
+            "sutEdge": "true",
+            "sutRole": "receiver"
+        },
+        {
+            "name": "SMTP test 10",
+            "id": 10,
+            "desc": "Tests the ability of SUT to reject invalid data as part of DATA command. TTT sends an email to Test Address 1(SUT) from wellformed3@hostname. The test lab should verify the receipt of email with subject 'Test Case 9'",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 11",
+            "id": 11,
+            "desc": "Tests the ability of SUT to reject bad SMTP commands. The tool will send invalid SMTP commands to intiate the session following exception paths identified in Section 4.1.1 and 4.1.4 of RFC 2821",
+            "longDesc": "The objective of this test sequence is to determine if the System Under Test (SUT), acting as the receiver, rejects as invalid the commands sent from the Health Information System Program (HISP) or Edge Testing Tool, acting as the sender.\\nThe details for conformance testing flow are as follows: The HISP or Edge Testing Tool attempts to initiate a session with the SUT by sending an invalid Simple Mail Transfer Protocol (SMTP) command following identified exception paths. The test attempts to determine if the SUT rejects the command sent by the HISP or Edge Testing Tool as invalid and responds using the appropriate mechanisms. This is conducted in accordance with RFC 2811, Section 4.1.1 and 4.1.4 (e.g., closing the session abruptly). This is a required test.\\nThis test retains compliancy with the secure health data transport messaging formats, processing requirements, and communication standards for Direct Edge message exchanges. See Section 1.2.1 and 1.2.2 of the ‘Implementation Guide for Direct Edge Protocols’ document.",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 12",
+            "id": 12,
+            "desc": "Tests the ability of SUT to reject data beyond the size limit. The tool will send data beyond the allowed size limits per RFC 2821 section 4.5.3.1 to the SUT to ensure that they are appropriately rejected.",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 13",
+            "id": 13,
+            "desc": "Tests the timeouts for various SMTP commands. The tool will keep the transaction open for beyond the specified timelimits in RFC 2821 section 4.5.3.2",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true",
+            "timeOut": "4"
+        },
+        {
+            "name": "SMTP test 14",
+            "id": 14,
+            "desc": "Tests the ability of SUT to receive an email. TTT sends an email to Test Address 1(SUT) from wellformed3@hostname. The test lab should verify the receipt of email with subject 'Test Case 9'",
+            "sutRole": "sender",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 16",
+            "id": 16,
+            "desc": "Tests the ability of SUT to accept a STARTTLS connection. TTT sends an email to Test Address 1(SUT) from wellformed3@hostname. The test lab should verify the receipt of email with subject 'STARTTLS",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 17",
+            "id": 17,
+            "desc": "Tests the ability of SUT to reject invalid STARTTLS commands.The tool sends invalid STARTTLS commands and check for server behavior.",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 20",
+            "id": 20,
+            "desc": "Tests the ability of SUT to accept a PLAIN SASL connection. TTT sends an email to Test Address 1(SUT) from wellformed3@hostname. The test lab should verify the receipt of email with subject 'PLAIN SASL",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        },
+        {
+            "name": "SMTP test 22",
+            "id": 22,
+            "desc": "Tests the ability of SUT to reject a PLAIN SASL connection. TTT tries to authenticate with SUT using bad username/password",
+            "sutRole": "receiver",
+            "sutHisp": "true",
+            "sutEdge": "true"
+        }
+    ]
+}
