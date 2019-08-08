@@ -1,0 +1,5 @@
+ONC's Transport Testing Platform provides transport and content validation for the 2014-2015 Edition health IT certification program. The initial version includes the Edge Testing Tool developed by NIST. Future versions of the platform will include API testing, FHIR, and other transport validation tools.
+
+The current release schedule for usability improvements is as follows:
+
+ * Release 2.3.10: 2/25/2019, Monthly Updates, Fixes, and C-CDA Validator Update

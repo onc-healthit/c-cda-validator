@@ -1,0 +1,8 @@
+## Try to run test case 1
+
+curl -d '{"name":"tc1"}' -H "Content-Type: application/json" http://localhost:8080/ttt/xdr/tc/1
+
+## Send a fake toolkit report to the tool :
+
+curl -d '<report>success</report>' -H "Content-Type: application/xml" http://localhost:8080/ttt/xdrNotification
+

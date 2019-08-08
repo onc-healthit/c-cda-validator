@@ -1,0 +1,156 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>webapp</artifactId>
+	<packaging>jar</packaging>
+	<name>TTT webapp</name>
+
+	<parent>
+		<groupId>gov.nist.healthcare.ttt</groupId>
+		<artifactId>common-config</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<jersey.version>2.22.1</jersey.version>
+	</properties>
+
+
+	<!-- ================================================================================ -->
+	<!-- External additional maven repositories -->
+	<!-- ================================================================================ -->
+	<!-- <repositories> ================================================================================ 
+		Retrieving our home grown project ================================================================================ 
+		<repository> <id>public</id> <name>Internal dependencies</name> <url>http://vm-070.nist.gov:8081/nexus/content/groups/public/</url> 
+		<layout>default</layout> <releases> <enabled>true</enabled> <updatePolicy>always</updatePolicy> 
+		</releases> <snapshots> <enabled>true</enabled> <updatePolicy>always</updatePolicy> 
+		</snapshots> </repository> <repository> <id>oss-jfrog-artifactory</id> <name>oss-jfrog-artifactory-releases</name> 
+		<url>http://oss.jfrog.org/artifactory/oss-release-local</url> </repository> 
+		<repository> <id>codehaus.org</id> <url>http://repository.codehaus.org</url> 
+		</repository> </repositories> -->
+
+	<!-- ================================================================================ -->
+	<!-- Dependencies -->
+	<!-- ================================================================================ -->
+	<dependencies>
+		<!-- FileUpload dependencies -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-collections4</artifactId>
+		    <version>4.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+
+		<!-- NIST dependencies -->
+		<dependency>
+			<groupId>gov.nist.healthcare.ttt</groupId>
+			<artifactId>database</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>gov.nist.healthcare.ttt</groupId>
+			<artifactId>mailprotocols</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>gov.nist.healthcare.ttt</groupId>
+			<artifactId>direct</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- swagger for documenting the api -->
+		<!--<dependency> -->
+		<!--<groupId>com.mangofactory</groupId> -->
+		<!--<artifactId>swagger-springmvc</artifactId> -->
+		<!--<version>0.8.8</version> -->
+		<!--</dependency> -->
+
+		<!-- time handling -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+
+		<!-- JsonPath is Xpath for Json. Used by MockMVC for assertion -->
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>0.9.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.tika/tika-core -->
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-core</artifactId>
+			<version>1.22</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.unix4j</groupId>
+			<artifactId>unix4j-command</artifactId>
+			<version>0.3</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<requiresUnpack>
+						<dependency>
+							<groupId>gov.nist.toolkit</groupId>
+							<artifactId>toolkit-api</artifactId>
+							<version>6.3.4</version>
+						</dependency>
+
+						<dependency>
+							<groupId>gov.nist.toolkit</groupId>
+							<artifactId>transaction-notification-service</artifactId>
+							<version>6.3.4</version>
+						</dependency>
+					</requiresUnpack>
+				</configuration>
+			</plugin>
+
+
+
+		</plugins>
+
+	</build>
+</project>

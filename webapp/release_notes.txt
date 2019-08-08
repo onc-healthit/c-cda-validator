@@ -1,0 +1,7 @@
+
+==Version 2.3.9#01/28/2019
+    *1. Update apache commons and apache tika version due to github identified security issue.
+    
+    *2. Fix a bug in XDR HISP test cases where processed MDNs sent by the SUT cause inconsistent results.
+    
+    *3. New validator release-https://github.com/siteadmin/reference-ccda-validator/releases/tag/1.0.38
