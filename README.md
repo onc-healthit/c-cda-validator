@@ -5,7 +5,7 @@ CCDA provides capabilities to validate your CCDAapplicable standards-specificati
 ## 1. Installation
 	To get started locally, follow these instructions:
 	
-	1. If you haven't done it already, make a fork of this repo https://github.com/siteadmin/Direct-Testing-Tool.
+	1. If you haven't done it already, make a fork of this repo https://github.com/onc-healthit/c-cda-validator.
 	2. Clone to your local computer using git or svn
 	
 ## 2. Dependency
@@ -58,13 +58,13 @@ NOTE: Text in ***Italicized Bold*** are specific to your local install directory
 4.	Creating New Packages
 
 >> 1. Download code from Git Hub
->>> a. https://github.com/siteadmin/Direct-Testing-Tool
+>>> a. https://github.com/onc-healthit/c-cda-validator
 >>> b. You should see the following structure
  
 ![install_2](https://user-images.githubusercontent.com/20687947/56751203-84d4dd00-6753-11e9-98e0-7e7a36b1a88c.png)
 
 >> 2. Compile code
->>> Eg: if you download the code to ***C:\testing\dtt***
+>>> Eg: if you download the code to ***C:\testing\ccda***
 	
 >>> Execute the following command from the command prompt twice 1st time you will see some FAILURE, execute the same command again and you should see all SUCCESS.
 
@@ -103,7 +103,7 @@ NOTE: Text in ***Italicized Bold*** are specific to your local install directory
 
 >>> Open a browser the type the following URL
 
->>> http://localhost:8081/dtt
+>>> http://localhost:8081/ccda
 
 >>> you should see the application running.
 
