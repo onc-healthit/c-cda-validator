@@ -13,7 +13,7 @@
     "angulartics-google-analytics": "^0.4.0"
   },
   "devDependencies": {
-    "bower": "~1.7.7",
+    "bower": "~1.8.8",
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.13",
     "grunt-contrib-less": "~0.11.0",
